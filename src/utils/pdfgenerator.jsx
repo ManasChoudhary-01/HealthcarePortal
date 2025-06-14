@@ -1,7 +1,7 @@
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 
-export const downloadPDF = async (elementRef, filename = "prescription.pdf") => {
+export const downloadPDF = async (elementRef, filename = "Prescription.pdf") => {
   const canvas = await html2canvas(elementRef.current);
   const imgData = canvas.toDataURL("image/png");
 
