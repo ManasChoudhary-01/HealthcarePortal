@@ -1,24 +1,15 @@
 import React, { useRef, useState } from "react";
-import PrescriptionForm from "./components/PrescriptionForm/Form";
-import Template from "./components/PrescriptionTemplate/Template";
-import { downloadPDF } from "./utils/pdfgenerator";
+import { Routes, Route } from 'react-router-dom';
+import Prescription from "./pages/Prescription/Prescription";
+import Submitted from "./pages/Submitted/Submitted";
 
 function App() {
-  // const [patientData, setPatientData] = useState(null);
-  // const prescriptionRef = useRef();
-  const [submittedData, setSubmittedData] = useState(null);
-  const prescriptionRef = useRef();
 
   return (
-    <div className="App">
-      <PrescriptionForm onSubmitData={setSubmittedData} />
-      {submittedData && (
-        <>
-          <Template ref={prescriptionRef} data={submittedData} />
-          <button onClick={() => downloadPDF(prescriptionRef)}>Download PDF</button>
-        </>
-      )}
-    </div>
+      <Routes>
+        <Route path="/" element={<Prescription />} />
+        <Route path="/submitted" element={<Submitted />} />
+      </Routes>
   );
 }
 
