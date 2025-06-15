@@ -1,8 +1,15 @@
 .formContainer {
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 2rem 0;
+
+    @media(max-width: 600px) {
+        width: 100vw;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
 
     h2 {
         margin-bottom: 60px;
@@ -14,6 +21,20 @@
         grid-template-columns: repeat(2, 1fr);
         column-gap: 100px;
 
+        @media(max-width: 1100px) {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            column-gap: 0;
+        }
+
+        @media(max-width: 600px) {
+            width: 100vw;
+            align-items: center;
+            // padding-left: 20px;
+            // padding-right: 20px;
+        }
+
         .input {
             display: flex;
             flex-direction: column;
@@ -21,6 +42,11 @@
             gap: 4px;
             margin-bottom: 50px;
             position: relative;
+
+            @media(max-width: 600px) {
+                min-width: calc(100vw - 40px);
+                max-width: fit-content;
+            }
 
             label {
                 font-size: 16px;
@@ -117,6 +143,12 @@
         gap: 4px;
         margin-bottom: 40px;
         position: relative;
+
+        @media(max-width: 600px) {
+            width: 100%;
+            min-width: fit-content;
+            max-width: calc(100vw - 40px);
+        }
 
         label {
             font-size: 20px;
