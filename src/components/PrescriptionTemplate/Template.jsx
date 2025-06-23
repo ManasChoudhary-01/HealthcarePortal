@@ -2,7 +2,10 @@ import React, { forwardRef } from "react";
 import styles from "./template.module.scss";
 
 const Prescription = forwardRef(({ data }, ref) => {
-    const currentDate = new Date().toLocaleDateString();
+
+    const today = new Date();
+    const currentDate = `${today.getDate().toString().padStart(2, '0')}/${(today.getMonth() + 1).toString().padStart(2, '0')}/${today.getFullYear().toString().slice(-2)}`;
+    // console.log(currentDate);
 
     return (
         <div ref={ref} className={styles.prescriptionTemplate}>
