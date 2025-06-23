@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styles from "./form.module.scss";
 
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import Select from "react-select";
 
 export default function PrescriptionForm({ onSubmitData }) {
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const initialValues = {
     patientName: "",
     patientAge: "",
@@ -43,7 +45,6 @@ export default function PrescriptionForm({ onSubmitData }) {
     inputValue = inputValue.replace(/[^0-9]/g, "");
     event.target.value = inputValue;
   }
-
   const genderOptions = [
     { value: "Male", label: "Male" },
     { value: "Female", label: "Female" },
@@ -57,16 +58,43 @@ export default function PrescriptionForm({ onSubmitData }) {
     { value: "Other", label: "Other" },
   ];
 
+  const handleFormSubmit = async (values, { resetForm }) => {
+    setIsSubmitting(true);
+    onSubmitData(values);
+    // console.log(values)
+
+    try {
+      const response = await fetch("/api/prescription", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const result = await response.json();
+      console.log("Prescription submitted successfully:", result);
+      // resetForm();
+
+      if (onSubmitData) {
+        onSubmitData(result);
+      }
+    } catch (error) {
+      console.error("Error submitting prescription:", error);
+    }
+  };
+
   return (
     <div className={styles.formContainer}>
       <h2>Doctor Prescription Form</h2>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={(values) => {
-          console.log(values);
-          onSubmitData(values);
-        }}
+        onSubmit={handleFormSubmit}
       >
         {({ values, setFieldValue }) => (
           <Form>
@@ -232,7 +260,9 @@ export default function PrescriptionForm({ onSubmitData }) {
                 className={styles.errorMessage}
               />
             </div>
-            <button type="submit">Submit</button>
+            <button type="submit" disabled={isSubmitting}>
+              {isSubmitting ? "Submitting..." : "Submit"}
+            </button>
           </Form>
         )}
       </Formik>
