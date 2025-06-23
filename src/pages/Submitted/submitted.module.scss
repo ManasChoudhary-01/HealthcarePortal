@@ -4,10 +4,30 @@
     align-items: center;
     overflow: scroll;
     padding: 2rem 0;
+    // position: relative;
+
+    @media(max-width: 800px) {
+        overflow-x: hidden;
+        overflow-y: hidden;
+    }
+
 
     .prescriptionContainer {
         border: 2px solid #000;
         margin-bottom: 2rem;
+        background-color: #000;
+
+        // @media(max-width: 600px) {
+        //     scale: 0.4;
+        //     overflow: hidden;
+        //     // position: fixed;
+        //     // top: 0;
+        //     transform: translateY(-70%);
+        // }
+
+        @media(max-width: 800px) {
+            opacity: 0;
+        }
     }
 
     button {
@@ -20,5 +40,12 @@
         padding: 10px 25px;
         border: none;
         cursor: pointer;
+
+        @media(max-width: 600px) {
+            // scale: 0.4;
+            // transform: translateY(-170%);
+            position: fixed;
+            bottom: calc(46lvh);
+        }
     }
 }

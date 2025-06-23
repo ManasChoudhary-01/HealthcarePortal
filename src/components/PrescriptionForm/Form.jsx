@@ -159,7 +159,7 @@ export default function PrescriptionForm({ onSubmitData }) {
                   className={styles.errorMessage}
                 />
               </div>
-                            <div className={styles.input}>
+              <div className={styles.input}>
                 <label htmlFor="diagnosis">Diagnosis</label>
                 <div className={styles.checkboxContainer}>
                   {diagnosisOptions.map((option) => (
