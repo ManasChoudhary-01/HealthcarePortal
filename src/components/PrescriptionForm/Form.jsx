@@ -60,11 +60,11 @@ export default function PrescriptionForm({ onSubmitData }) {
 
   const handleFormSubmit = async (values, { resetForm }) => {
     setIsSubmitting(true);
-    onSubmitData(values);
+    // onSubmitData(values);
     // console.log(values)
 
     try {
-      const response = await fetch("/api/prescription", {
+      const response = await fetch("https://httpbin.org/post", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
