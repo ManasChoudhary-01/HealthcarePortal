@@ -92,7 +92,6 @@ export default function ReceptionForm() {
       setFieldValue("state", "");
       setFieldValue("city", "");
       setCityOptions([]);
-
     } catch (error) {
       console.error("Error submitting prescription:", error);
     } finally {
@@ -102,7 +101,7 @@ export default function ReceptionForm() {
 
   return (
     <div className={styles.receptionForm}>
-      <h2>Doctor Prescription Form</h2>
+      <h2>Registration Desk</h2>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -112,179 +111,183 @@ export default function ReceptionForm() {
         {({ values, setFieldValue }) => (
           <Form>
             <div className={styles.gridContainer}>
-              <div className={styles.input}>
-                <label htmlFor="firstname">First Name</label>
-                <Field
-                  name="firstname"
-                  type="text"
-                  placeholder="Enter First Name"
-                  className={styles.inputField}
-                />
-                <ErrorMessage
-                  name="firstname"
-                  component="div"
-                  className={styles.errorMessage}
-                />
-              </div>
-
-              <div className={styles.input}>
-                <label htmlFor="address">Address</label>
-                <Field
-                  name="address"
-                  as="textarea"
-                  placeholder="Enter Address"
-                  className={styles.textArea}
-                />
-                <ErrorMessage
-                  name="address"
-                  component="div"
-                  className={styles.errorMessage}
-                />
-              </div>
-
-              <div className={styles.input}>
-                <label htmlFor="lastname">Last Name</label>
-                <Field
-                  name="lastname"
-                  type="text"
-                  className={styles.inputField}
-                  placeholder="Enter Last Name"
-                />
-                <ErrorMessage
-                  name="lastname"
-                  component="div"
-                  className={styles.errorMessage}
-                />
-              </div>
-
-              <div className={styles.input}>
-                <label htmlFor="state">State</label>
-                <Select
-                  id="state"
-                  name="state"
-                  options={stateOptions}
-                  value={
-                    values.state
-                      ? stateOptions.find(
-                          (option) => option.value === values.state
-                        )
-                      : null
-                  }
-                  onChange={(selectedOption) => {
-                    setFieldValue(
-                      "state",
-                      selectedOption ? selectedOption.value : ""
-                    );
-                    setFieldValue("city", ""); // Clear the city when the state changes
-                    setSelectedState(
-                      selectedOption ? selectedOption.value : ""
-                    );
-                  }}
-                  className={styles.stateWrapper}
-                  // styles={customStyles}
-                  placeholder="Your State"
-                />
-                <ErrorMessage
-                  name="state"
-                  component="div"
-                  className={styles.errorMessage}
-                />
-              </div>
-
-              <div className={styles.input}>
-                <label htmlFor="gender">Gender</label>
-                <div className={styles.checkboxContainer}>
-                  {genderOptions.map((option) => (
-                    <div key={option.value} className={styles.checkboxItem}>
-                      <div
-                        className={`${styles.customCheckbox} ${
-                          values.gender === option.value ? styles.checked : ""
-                        }`}
-                        onClick={() => {
-                          setFieldValue("gender", option.value);
-                        }}
-                      ></div>
-                      <label
-                        className={styles.checkboxLabel}
-                        htmlFor={`gender-${option.value}`}
-                        onClick={() => {
-                          setFieldValue("gender", option.value);
-                        }}
-                      >
-                        {option.label}
-                      </label>
-                    </div>
-                  ))}
+              <div>
+                <div className={styles.input}>
+                  <label htmlFor="firstname">First Name</label>
+                  <Field
+                    name="firstname"
+                    type="text"
+                    placeholder="Enter First Name"
+                    className={styles.inputField}
+                  />
+                  <ErrorMessage
+                    name="firstname"
+                    component="div"
+                    className={styles.errorMessage}
+                  />
                 </div>
-                <ErrorMessage
-                  name="gender"
-                  component="div"
-                  className={styles.errorMessage}
-                />
+
+                <div className={styles.input}>
+                  <label htmlFor="lastname">Last Name</label>
+                  <Field
+                    name="lastname"
+                    type="text"
+                    className={styles.inputField}
+                    placeholder="Enter Last Name"
+                  />
+                  <ErrorMessage
+                    name="lastname"
+                    component="div"
+                    className={styles.errorMessage}
+                  />
+                </div>
+
+                <div className={styles.input}>
+                  <label htmlFor="gender">Gender</label>
+                  <div className={styles.checkboxContainer}>
+                    {genderOptions.map((option) => (
+                      <div key={option.value} className={styles.checkboxItem}>
+                        <div
+                          className={`${styles.customCheckbox} ${
+                            values.gender === option.value ? styles.checked : ""
+                          }`}
+                          onClick={() => {
+                            setFieldValue("gender", option.value);
+                          }}
+                        ></div>
+                        <label
+                          className={styles.checkboxLabel}
+                          htmlFor={`gender-${option.value}`}
+                          onClick={() => {
+                            setFieldValue("gender", option.value);
+                          }}
+                        >
+                          {option.label}
+                        </label>
+                      </div>
+                    ))}
+                  </div>
+                  <ErrorMessage
+                    name="gender"
+                    component="div"
+                    className={styles.errorMessage}
+                  />
+                </div>
+
+                <div className={styles.input}>
+                  <label htmlFor="dateOfBirth">Date of Birth</label>
+                  <Field
+                    name="dateOfBirth"
+                    type="date"
+                    className={styles.inputField}
+                    placeholder="Enter your Date of Birth"
+                  />
+                  <ErrorMessage
+                    name="dateOfBirth"
+                    component="div"
+                    className={styles.errorMessage}
+                  />
+                </div>
               </div>
 
-              <div className={styles.input}>
-                <label htmlFor="city">City</label>
-                <Select
-                  id="city"
-                  name="city"
-                  options={cityOptions}
-                  value={
-                    values.city
-                      ? cityOptions.find(
-                          (option) => option.value === values.city
-                        )
-                      : null
-                  }
-                  onChange={(selectedOption) => {
-                    setFieldValue(
-                      "city",
-                      selectedOption ? selectedOption.value : ""
-                    );
-                  }}
-                  isDisabled={!selectedState} // Disable city selection if no state is selected
-                  className={styles.cityWrapper}
-                  // styles={customStyles}
-                  placeholder={
-                    selectedState ? "Your City" : "Select a State first"
-                  }
-                />
-                <ErrorMessage
-                  name="city"
-                  component="div"
-                  className={styles.errorMessage}
-                />
-              </div>
+              <div>
+                <div className={styles.input}>
+                  <label htmlFor="address">Address</label>
+                  <Field
+                    name="address"
+                    as="textarea"
+                    placeholder="Enter Address"
+                    className={styles.textArea}
+                  />
+                  <ErrorMessage
+                    name="address"
+                    component="div"
+                    className={styles.errorMessage}
+                  />
+                </div>
 
-              <div className={styles.input}>
-                <label htmlFor="dateOfBirth">Date of Birth</label>
-                <Field
-                  name="dateOfBirth"
-                  type="date"
-                  className={styles.inputField}
-                  placeholder="Enter your Date of Birth"
-                />
-                <ErrorMessage
-                  name="dateOfBirth"
-                  component="div"
-                  className={styles.errorMessage}
-                />
-              </div>
+                <div className={styles.input}>
+                  <label htmlFor="state">State</label>
+                  <Select
+                    id="state"
+                    name="state"
+                    options={stateOptions}
+                    value={
+                      values.state
+                        ? stateOptions.find(
+                            (option) => option.value === values.state
+                          )
+                        : null
+                    }
+                    onChange={(selectedOption) => {
+                      setFieldValue(
+                        "state",
+                        selectedOption ? selectedOption.value : ""
+                      );
+                      setFieldValue("city", ""); // Clear the city when the state changes
+                      setSelectedState(
+                        selectedOption ? selectedOption.value : ""
+                      );
+                    }}
+                    className={styles.stateWrapper}
+                    // styles={customStyles}
+                    placeholder="Your State"
+                  />
+                  <ErrorMessage
+                    name="state"
+                    component="div"
+                    className={styles.errorMessage}
+                  />
+                </div>
 
-              <div className={styles.input}>
-                <label htmlFor="zipcode">Zip Code</label>
-                <Field
-                  name="zipcode"
-                  type="text"
-                  className={styles.inputField}
-                  placeholder="Enter your Zip Code"
-                  onInput={(e) => handleNumericInput(e)}
-                />
-                <ErrorMessage
-                  name="zipcode"
-                  component="div"
-                  className={styles.errorMessage}
-                />
+                <div className={styles.input}>
+                  <label htmlFor="city">City</label>
+                  <Select
+                    id="city"
+                    name="city"
+                    options={cityOptions}
+                    value={
+                      values.city
+                        ? cityOptions.find(
+                            (option) => option.value === values.city
+                          )
+                        : null
+                    }
+                    onChange={(selectedOption) => {
+                      setFieldValue(
+                        "city",
+                        selectedOption ? selectedOption.value : ""
+                      );
+                    }}
+                    isDisabled={!selectedState} // Disable city selection if no state is selected
+                    className={styles.cityWrapper}
+                    // styles={customStyles}
+                    placeholder={
+                      selectedState ? "Your City" : "Select a State first"
+                    }
+                  />
+                  <ErrorMessage
+                    name="city"
+                    component="div"
+                    className={styles.errorMessage}
+                  />
+                </div>
+
+                <div className={styles.input}>
+                  <label htmlFor="zipcode">Zip Code</label>
+                  <Field
+                    name="zipcode"
+                    type="text"
+                    className={styles.inputField}
+                    placeholder="Enter your Zip Code"
+                    onInput={(e) => handleNumericInput(e)}
+                  />
+                  <ErrorMessage
+                    name="zipcode"
+                    component="div"
+                    className={styles.errorMessage}
+                  />
+                </div>
               </div>
             </div>
             <button type="submit" disabled={isSubmitting}>
