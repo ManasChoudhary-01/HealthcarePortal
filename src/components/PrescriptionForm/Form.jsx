@@ -3,6 +3,7 @@ import styles from "./form.module.scss";
 
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import axios from "axios";
 
 export default function PrescriptionForm({ onSubmitData }) {
 
@@ -64,27 +65,23 @@ export default function PrescriptionForm({ onSubmitData }) {
     // console.log(values)
 
     try {
-      const response = await fetch("https://httpbin.org/post", {
-        method: "POST",
+      const response = await axios.post("https://httpbin.org/post", values, {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(values),
       });
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const result = await response.json();
-      console.log("Prescription submitted successfully:", result);
+      // console.log("Prescription submitted successfully:", response);
+      // console.log(values);
       // resetForm();
 
       if (onSubmitData) {
-        onSubmitData(result);
+        onSubmitData(values);
       }
     } catch (error) {
       console.error("Error submitting prescription:", error);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 

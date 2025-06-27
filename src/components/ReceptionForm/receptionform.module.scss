@@ -1,0 +1,310 @@
+.receptionForm {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2rem 0;
+
+    // @media(max-width: 600px) {
+    //     width: 100vw;
+    //     padding-left: 20px;
+    //     padding-right: 20px;
+    // }
+
+    h2 {
+        margin-bottom: 60px;
+    }
+
+    .gridContainer {
+        display: grid;
+        width: 1100px;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 100px;
+
+        @media(max-width: 1100px) {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            column-gap: 0;
+        }
+
+        @media(max-width: 600px) {
+            width: 100vw;
+            align-items: center;
+            // padding-left: 20px;
+            // padding-right: 20px;
+        }
+
+        .input {
+            display: flex;
+            flex-direction: column;
+            max-width: 500px;
+            gap: 4px;
+            margin-bottom: 50px;
+            position: relative;
+
+            @media(max-width: 600px) {
+                min-width: calc(100vw - 40px);
+                max-width: fit-content;
+            }
+
+            label {
+                font-size: 16px;
+                font-weight: 670;
+                text-transform: uppercase;
+            }
+
+            .inputField,
+            .textArea {
+                background-color: transparent;
+                font-size: 16px;
+                padding: 11px 16px;
+                border: 2px solid rgba(17, 17, 17, 0.2);
+                border-radius: 4px;
+                color: rgb(17, 17, 17);
+                transition: all 0.3s ease-in-out;
+            }
+
+            .inputField::placeholder,
+            .textArea::placeholder {
+                background: transparent;
+                color: rgb(17, 17, 17);
+                opacity: 1;
+                font-size: 16px;
+            }
+
+            .inputField:focus,
+            .textArea:focus {
+                border-color: rgb(6, 139, 136);
+                outline: none;
+            }
+
+
+            .checkboxContainer {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                font-size: 16px;
+                gap: 0.6rem 1.2rem;
+                padding-left: 10px;
+                padding-right: 10px;
+
+                .checkboxItem {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    gap: 12px;
+
+                    .customCheckbox {
+                        width: 19px;
+                        height: 19px;
+                        border-radius: 50%;
+                        background-color: #E7E7E7;
+                        cursor: pointer;
+                        transform: translateY(2px);
+
+                        .checked {
+                            background-color: rgb(6, 139, 136);
+                            border: 3px solid rgb(6, 139, 136);
+                        }
+                    }
+
+                    .checked {
+                        background-color: rgb(6, 139, 136);
+                        border: 3px solid rgb(6, 139, 136);
+                    }
+
+                    .checkboxLabel {
+                        cursor: pointer;
+                        font-style: normal;
+                        font-size: 17px;
+                        font-weight: 500;
+                        color: #111;
+                    }
+                }
+            }
+
+
+            .errorMessage {
+                color: #D8000C;
+                font-size: 14px;
+                font-weight: 750;
+                font-family: Arial, Helvetica, sans-serif;
+                position: absolute;
+                bottom: -20px;
+            }
+        }
+    }
+
+    .inputCheckbox {
+        display: flex;
+        min-width: 500px;
+        gap: 4px;
+        margin-bottom: 40px;
+        position: relative;
+
+        // @media(max-width: 600px) {
+        //     width: 100%;
+        //     min-width: fit-content;
+        //     max-width: calc(100vw - 40px);
+        // }
+
+        label {
+            font-size: 20px;
+            font-weight: 400;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            input {
+                background-color: #E7E7E7;
+                width: 20px;
+                height: 20px;
+                cursor: pointer;
+                transform: translateY(2px);
+
+                &:hover {
+                    outline: none;
+                }
+            }
+        }
+
+        .errorMessage {
+            color: #D8000C;
+            font-size: 14px;
+            font-weight: 750;
+            font-family: Arial, Helvetica, sans-serif;
+            position: absolute;
+            bottom: -20px;
+        }
+    }
+
+    button {
+        font-weight: bold;
+        font-size: 20px;
+        font-style: normal;
+        background-color: rgb(6, 139, 136);
+        color: white;
+        border-radius: 4px;
+        padding: 10px 25px;
+        border: none;
+        cursor: pointer;
+    }
+}
+
+@media(max-width: 1000px) {
+    .receptionForm {
+
+        .gridContainer {
+            .input {
+                max-width: 520px;
+            }
+        }
+    }
+
+    .inputCheckbox {
+        display: flex;
+        min-width: 520px;
+        gap: 4px;
+        margin-bottom: 40px;
+        position: relative;
+    }
+}
+
+@media(max-width: 600px) {
+    .receptionForm {
+        width: 100vw;
+        padding-left: 20px;
+        padding-right: 20px;
+
+        h2 {
+            margin-bottom: 40px;
+            font-size: 24px;
+        }
+
+        .gridContainer {
+            width: calc(100vw - 40px);
+
+            .input {
+                display: flex;
+                flex-direction: column;
+                max-width: 500px;
+                gap: 4px;
+                margin-bottom: 50px;
+                position: relative;
+
+                @media(max-width: 600px) {
+                    min-width: calc(100vw - 40px);
+                    max-width: fit-content;
+                }
+
+                label {
+                    font-size: 15px;
+                    font-weight: 670;
+                    text-transform: uppercase;
+                }
+
+                .inputField,
+                .textArea {
+                    font-size: 15px;
+                }
+
+                .inputField::placeholder,
+                .textArea::placeholder {
+                    background: transparent;
+                    font-size: 15px;
+                }
+
+
+                .checkboxContainer {
+                    padding-top: 8px;
+                    padding-left: 0px;
+                    padding-right: 0px;
+
+                    .checkboxItem {
+
+                        .customCheckbox {
+                            width: 16px;
+                            height: 16px;
+                            transform: translateY(0px);
+                        }
+
+                        .checkboxLabel {
+                            font-size: 15px;
+                        }
+                    }
+                }
+
+
+                .errorMessage {
+                    font-size: 13px;
+                }
+            }
+        }
+
+        .inputCheckbox {
+            margin-bottom: 50px;
+            width: 100%;
+            min-width: fit-content;
+            max-width: calc(100vw - 40px);
+
+            label {
+                font-size: 16px;
+
+                input {
+                    width: 18px;
+                    height: 18px;
+                }
+            }
+
+            .errorMessage {
+                font-size: 13px;
+            }
+        }
+
+        button {
+            font-size: 18px;
+        }
+    }
+}
