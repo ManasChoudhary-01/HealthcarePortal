@@ -5,12 +5,6 @@
     align-items: center;
     margin: 2rem 0;
 
-    // @media(max-width: 600px) {
-    //     width: 100vw;
-    //     padding-left: 20px;
-    //     padding-right: 20px;
-    // }
-
     h2 {
         margin-bottom: 60px;
     }
@@ -22,17 +16,12 @@
         column-gap: 100px;
 
         @media(max-width: 1100px) {
-            width: 100%;
+            width: 100vw;
             display: flex;
             flex-direction: column;
             column-gap: 0;
-        }
-
-        @media(max-width: 600px) {
-            width: 100vw;
-            align-items: center;
-            // padding-left: 20px;
-            // padding-right: 20px;
+            padding-left: 10vw;
+            padding-right: 10vw;
         }
 
         .input {
@@ -43,9 +32,8 @@
             margin-bottom: 50px;
             position: relative;
 
-            @media(max-width: 600px) {
-                min-width: calc(100vw - 40px);
-                max-width: fit-content;
+            @media(max-width: 1100px) {
+                max-width: 80vw;
             }
 
             label {
@@ -137,49 +125,6 @@
         }
     }
 
-    .inputCheckbox {
-        display: flex;
-        min-width: 500px;
-        gap: 4px;
-        margin-bottom: 40px;
-        position: relative;
-
-        // @media(max-width: 600px) {
-        //     width: 100%;
-        //     min-width: fit-content;
-        //     max-width: calc(100vw - 40px);
-        // }
-
-        label {
-            font-size: 20px;
-            font-weight: 400;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-
-            input {
-                background-color: #E7E7E7;
-                width: 20px;
-                height: 20px;
-                cursor: pointer;
-                transform: translateY(2px);
-
-                &:hover {
-                    outline: none;
-                }
-            }
-        }
-
-        .errorMessage {
-            color: #D8000C;
-            font-size: 14px;
-            font-weight: 750;
-            font-family: Arial, Helvetica, sans-serif;
-            position: absolute;
-            bottom: -20px;
-        }
-    }
-
     button {
         font-weight: bold;
         font-size: 20px;
@@ -190,6 +135,10 @@
         padding: 10px 25px;
         border: none;
         cursor: pointer;
+
+        @media(max-width: 1100px) {
+            margin-left: 10vw;
+        }
     }
 }
 
@@ -198,7 +147,7 @@
 
         .gridContainer {
             .input {
-                max-width: 520px;
+                max-width: 80vw;
             }
         }
     }
@@ -225,6 +174,8 @@
 
         .gridContainer {
             width: calc(100vw - 40px);
+            padding-left: 0;
+            padding-right: 0;
 
             .input {
                 display: flex;
@@ -283,28 +234,9 @@
             }
         }
 
-        .inputCheckbox {
-            margin-bottom: 50px;
-            width: 100%;
-            min-width: fit-content;
-            max-width: calc(100vw - 40px);
-
-            label {
-                font-size: 16px;
-
-                input {
-                    width: 18px;
-                    height: 18px;
-                }
-            }
-
-            .errorMessage {
-                font-size: 13px;
-            }
-        }
-
         button {
             font-size: 18px;
+            margin-left: 0;
         }
     }
 }

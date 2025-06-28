@@ -215,7 +215,7 @@ export default function ReceptionForm() {
                   <Field
                     name="address"
                     as="textarea"
-                    rows={1}
+                    rows={`${window.innerWidth < 1100 ? 3 : 1}`}
                     placeholder="Enter Address"
                     className={styles.textArea}
                   />
