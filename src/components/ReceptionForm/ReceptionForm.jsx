@@ -20,6 +20,7 @@ export default function ReceptionForm() {
     lastname: "",
     gender: "",
     dateOfBirth: "",
+    email: "",
     address: "",
     city: "",
     state: "",
@@ -34,6 +35,9 @@ export default function ReceptionForm() {
       .required("Date of Birth is required")
       .nullable()
       .max(new Date(), "Date of Birth cannot be in the future"),
+    email: Yup.string()
+      .email("Please enter a valid email")
+      .required("Please enter your email"),
     address: Yup.string().required("Address is required"),
     state: Yup.string().required("State is required"),
     city: Yup.string().required("City is required"),
@@ -188,6 +192,21 @@ export default function ReceptionForm() {
                     className={styles.errorMessage}
                   />
                 </div>
+
+                <div className={styles.input}>
+                  <label htmlFor="email">Email</label>
+                  <Field
+                    name="email"
+                    type="email"
+                    className={styles.inputField}
+                    placeholder="Enter your email address"
+                  />
+                  <ErrorMessage
+                    name="email"
+                    component="div"
+                    className={styles.errorMessage}
+                  />
+                </div>
               </div>
 
               <div>
@@ -196,6 +215,7 @@ export default function ReceptionForm() {
                   <Field
                     name="address"
                     as="textarea"
+                    rows={1}
                     placeholder="Enter Address"
                     className={styles.textArea}
                   />
