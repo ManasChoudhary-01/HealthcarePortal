@@ -16,6 +16,8 @@
     "jspdf": "^3.0.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-otp-input": "^3.1.1",
+    "react-phone-number-input": "^3.4.12",
     "react-router-dom": "^7.6.2",
     "react-select": "^5.10.1",
     "sass": "^1.89.2",
