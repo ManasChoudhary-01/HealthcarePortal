@@ -5,7 +5,7 @@ export default function Prescription() {
   const navigate = useNavigate();
 
   const handleFormSubmit = (data) => {
-    navigate("/submitted", { state: { data } });
+    navigate("/prescriptionsubmitted", { state: { data } });
   };
 
   return (
