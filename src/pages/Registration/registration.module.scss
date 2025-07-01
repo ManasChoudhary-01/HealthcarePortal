@@ -1,0 +1,165 @@
+.phoneInputContainer {
+    height: 100lvh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .phnoScreen {
+        width: 432px;
+        // box-shadow: 0 4px 12px rgba(6, 139, 136, 0.4);
+        box-shadow: 0 0 10px rgba(6, 139, 136, 0.6), 0 0 20px rgba(6, 139, 136, 0.3);
+        height: fit-content;
+        border-radius: 16px;
+        padding: 2.2rem 1.5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        transition: all 0.3s ease-in-out;
+        position: relative;
+
+        h2 {
+            text-align: center;
+            font-size: 24px;
+        }
+
+        p {
+            text-align: center;
+        }
+
+        .customPhoneInput {
+            margin-top: 16px;
+            width: 80%;
+            --PhoneInputCountryFlag-height: 28px;
+            --PhoneInputCountryFlag-aspectRatio: 1.6;
+            --PhoneInputCountryFlag-borderWidth: 0;
+
+            input {
+                margin-left: 10px;
+                background-color: #fff;
+                padding: 10px;
+                // border-radius: 8px;
+                font-size: 16px;
+                border: 2px solid rgba(17, 17, 17, 0.2);
+                font-weight: 600;
+                color: rgb(17, 17, 17);
+                transition: all 0.1s ease-in-out;
+            }
+
+            input:focus {
+                border-color: rgb(6, 139, 136);
+                outline: none;
+            }
+        }
+
+        .error {
+            color: #D8000C;
+            font-size: 14px;
+            font-weight: 750;
+            font-family: Arial, Helvetica, sans-serif;
+            position: absolute;
+            bottom: 108px;
+            text-align: left;
+            width: calc(72%);
+        }
+
+        .buttonContainer {
+            width: 80%;
+
+            button {
+                width: 100%;
+                font-weight: bold;
+                font-size: 20px;
+                font-style: normal;
+                background-color: rgb(6, 139, 136);
+                color: white;
+                border-radius: 4px;
+                padding: 10px 25px;
+                border: none;
+                cursor: pointer;
+                margin-top: 32px;
+            }
+        }
+    }
+
+    .otpScreen {
+        width: 432px;
+        box-shadow: 0 0 10px rgba(6, 139, 136, 0.6), 0 0 20px rgba(6, 139, 136, 0.3);
+        height: fit-content;
+        border-radius: 16px;
+        padding: 2.2rem 1.5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease-in-out;
+        position: relative;
+
+        h2 {
+            text-align: center;
+            font-size: 24px;
+        }
+
+        .text {
+            font-size: 16px;
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 48px;
+        }
+
+        // .otpInput {
+        //     height: 24px;
+        // }
+
+        div {
+            gap: 10px;
+
+            .inputBox:focus {
+                outline-color: rgb(6, 139, 136);
+            }
+        }
+
+        .error {
+            color: #D8000C;
+            font-size: 14px;
+            font-weight: 750;
+            font-family: Arial, Helvetica, sans-serif;
+            position: absolute;
+            bottom: 108px;
+            text-align: left;
+            width: calc(72%);
+        }
+
+        .resendContainer {
+            width: 80%;
+
+            p {
+                text-align: right;
+                padding-top: 10px;
+                color: rgb(6, 139, 136);
+                font-weight: 610;
+            }
+        }
+
+        .buttonContainer {
+            width: 80%;
+
+            button {
+                width: 100%;
+                font-weight: bold;
+                font-size: 20px;
+                font-style: normal;
+                background-color: rgb(6, 139, 136);
+                color: white;
+                border-radius: 4px;
+                padding: 10px 25px;
+                border: none;
+                cursor: pointer;
+                margin-top: 34px;
+
+            }
+        }
+    }
+}
