@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./receptionform.module.scss";
+import Navbar from "../Header/Navbar";
 
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -8,6 +9,7 @@ import axios from "axios";
 
 import statesData from "../../utils/states.json";
 import citiesData from "../../utils/states.json";
+import Image from "../../assets/Form/image.png";
 
 export default function ReceptionForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -16,46 +18,56 @@ export default function ReceptionForm() {
   const [cityOptions, setCityOptions] = useState([]);
 
   const initialValues = {
-    firstname: "",
-    lastname: "",
+    firstName: "",
+    lastName: "",
     gender: "",
+    phoneNumber: "",
     dateOfBirth: "",
     email: "",
     address: "",
     city: "",
     state: "",
     zipcode: "",
+    aadhar: "",
+    uhid: "",
   };
 
   const validationSchema = Yup.object({
-    firstname: Yup.string().required("Name is required"),
-    // lastname: Yup.string().required("Name is required"),
+    firstName: Yup.string().required("Name is required"),
+    lastName: Yup.string().required("Name is required"),
     gender: Yup.string().required("Gender is required"),
+    phoneNumber: Yup.string()
+      .matches(/^\d{10}$/, "Phone number must be exactly 10 digits")
+      .required("Phone number is required"),
     dateOfBirth: Yup.date()
       .required("Date of Birth is required")
       .nullable()
       .max(new Date(), "Date of Birth cannot be in the future"),
     email: Yup.string()
-      .email("Please enter a valid email")
-      .required("Please enter your email"),
-    address: Yup.string().required("Address is required"),
-    state: Yup.string().required("State is required"),
-    city: Yup.string().required("City is required"),
+      .email("Please enter a valid email"),
+    // address: Yup.string().required("Address is required"),
+    // state: Yup.string().required("State is required"),
+    // city: Yup.string().required("City is required"),
     zipcode: Yup.string()
-      .matches(/^\d{6}$/, "Zip Code must be exactly 6 digits")
-      .required("Zip Code is required"),
+      .matches(/^\d{6}$/, "Zip Code must be exactly 6 digits"),
+    aadhar: Yup.string()
+      .matches(/^\d{12}$/, "Aadhar number must be exactly 12 digits")
+      .required("Aadhar number is required"),
+    uhid: Yup.string()
+      .matches(/^\d{12}$/, "UHID must be exactly 12 digits")
+      .required("UHID is required"),
   });
 
-  function handleNumericInput(event) {
-    // check for Zip Code number input
+  function handleNumericInput(event, maxDigits) {
     let inputValue = event.target.value;
-    inputValue = inputValue.replace(/[^0-9]/g, "");
+    inputValue = inputValue.replace(/\D/g, "");
+    inputValue = inputValue.slice(0, maxDigits);
     event.target.value = inputValue;
   }
   const genderOptions = [
-    { value: "Male", label: "Male" },
-    { value: "Female", label: "Female" },
-    { value: "Other", label: "Other" },
+    { value: "MALE", label: "Male" },
+    { value: "FEMALE", label: "Female" },
+    { value: "OTHER", label: "Other" },
   ];
 
   useEffect(() => {
@@ -83,7 +95,7 @@ export default function ReceptionForm() {
     // console.log(values)
 
     try {
-      const response = await axios.post("https://httpbin.org/post", values, {
+      const response = await axios.post("https://vitalize.strangled.net/api/users/register-admin", values, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -103,76 +115,117 @@ export default function ReceptionForm() {
     }
   };
 
+  const customSelectStyles = {
+    control: (provided) => ({
+      ...provided,
+      border: 'none',
+      outline: 'none',
+      height: '56px',
+      width: '440px',
+      backgroundColor: '#fff',
+      boxShadow: 'none',
+      borderRadius: '12px',
+    }),
+    placeholder: (provided) => ({
+      ...provided,
+      color: '#6B7582',
+      fontSize: '16px',
+      backgroundColor: '#fff',
+      padding: '16px',
+    }),
+    singleValue: (provided) => ({
+      ...provided,
+      fontSize: '16px',
+      color: '#6B7582',
+      backgroundColor: '#fff',
+      padding: '16px',
+    }),
+  };
+
   return (
     <div className={styles.receptionForm}>
-      <h2>Registration Desk</h2>
+      <Navbar />
+
+      <h2>Patient Registration</h2>
+
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={handleFormSubmit}
-        // onSubmit={(values) => console.log(values)}
+      // onSubmit={(values) => console.log(values)}
       >
         {({ values, setFieldValue }) => (
-          <Form>
+          <Form className={styles.formContainer}>
+            <div className={styles.imgContainer}>
+              <img src={Image} alt="Form" />
+            </div>
             <div className={styles.gridContainer}>
-              <div>
+
+              <div className={styles.leftColumn}>
+
                 <div className={styles.input}>
-                  <label htmlFor="firstname">First Name</label>
+                  <label htmlFor="firstName">First Name</label>
                   <Field
-                    name="firstname"
+                    name="firstName"
                     type="text"
-                    placeholder="Enter First Name"
+                    placeholder="Enter first name"
                     className={styles.inputField}
                   />
                   <ErrorMessage
-                    name="firstname"
+                    name="firstName"
                     component="div"
                     className={styles.errorMessage}
                   />
                 </div>
 
                 <div className={styles.input}>
-                  <label htmlFor="lastname">Last Name</label>
+                  <label htmlFor="lastName">Last Name</label>
                   <Field
-                    name="lastname"
+                    name="lastName"
                     type="text"
                     className={styles.inputField}
-                    placeholder="Enter Last Name"
+                    placeholder="Enter last name"
                   />
                   <ErrorMessage
-                    name="lastname"
+                    name="lastName"
                     component="div"
                     className={styles.errorMessage}
                   />
                 </div>
 
                 <div className={styles.input}>
-                  <label htmlFor="gender">Gender</label>
                   <div className={styles.checkboxContainer}>
                     {genderOptions.map((option) => (
-                      <div key={option.value} className={styles.checkboxItem}>
-                        <div
-                          className={`${styles.customCheckbox} ${
-                            values.gender === option.value ? styles.checked : ""
-                          }`}
-                          onClick={() => {
-                            setFieldValue("gender", option.value);
-                          }}
-                        ></div>
-                        <label
-                          className={styles.checkboxLabel}
-                          htmlFor={`gender-${option.value}`}
-                          onClick={() => {
-                            setFieldValue("gender", option.value);
-                          }}
-                        >
-                          {option.label}
-                        </label>
-                      </div>
+                      <label
+                        className={`${values.gender === option.value ? styles.checked : ""
+                          } ${styles.checkboxLabel}`}
+                        htmlFor={`gender-${option.value}`}
+                        onClick={() => {
+                          setFieldValue("gender", option.value);
+                        }}
+                      >
+                        {option.label}
+                      </label>
                     ))}
                   </div>
                   <ErrorMessage
                     name="gender"
+                    component="div"
+                    className={styles.errorMessage}
+                  />
+                </div>
+
+                <div className={styles.input}>
+                  <label htmlFor="phoneNumber">Phone Number</label>
+                  <Field
+                    name="phoneNumber"
+                    type="text"
+                    className={styles.inputField}
+                    placeholder="XXXXXXXXXX"
+                    onInput={(e) => handleNumericInput(e, 10)}
+                  />
+                  <ErrorMessage
+                    name="phoneNumber"
                     component="div"
                     className={styles.errorMessage}
                   />
@@ -184,7 +237,7 @@ export default function ReceptionForm() {
                     name="dateOfBirth"
                     type="date"
                     className={styles.inputField}
-                    placeholder="Enter your Date of Birth"
+                    placeholder="DD-MM-YYYY"
                   />
                   <ErrorMessage
                     name="dateOfBirth"
@@ -199,7 +252,7 @@ export default function ReceptionForm() {
                     name="email"
                     type="email"
                     className={styles.inputField}
-                    placeholder="Enter your email address"
+                    placeholder="Enter email address"
                   />
                   <ErrorMessage
                     name="email"
@@ -207,20 +260,69 @@ export default function ReceptionForm() {
                     className={styles.errorMessage}
                   />
                 </div>
+
+                <div className={styles.input}>
+                  <label htmlFor="aadhar">Aadhaar Number</label>
+                  <Field
+                    name="aadhar"
+                    type="text"
+                    className={styles.inputField}
+                    placeholder="Enter aadhaar number"
+                    onInput={(e) => handleNumericInput(e, 12)}
+                  />
+                  <ErrorMessage
+                    name="aadhar"
+                    component="div"
+                    className={styles.errorMessage}
+                  />
+                </div>
               </div>
 
-              <div>
+              <div className={styles.rightColumn}>
+
+                <div className={styles.input}>
+                  <label htmlFor="uhid">UHID</label>
+                  <Field
+                    name="uhid"
+                    type="text"
+                    className={styles.inputField}
+                    placeholder="Enter UHID"
+                    onInput={(e) => handleNumericInput(e, 12)}
+                  />
+                  <ErrorMessage
+                    name="uhid"
+                    component="div"
+                    className={styles.errorMessage}
+                  />
+                </div>
+
                 <div className={styles.input}>
                   <label htmlFor="address">Address</label>
                   <Field
                     name="address"
                     as="textarea"
-                    rows={`${window.innerWidth < 1100 ? 3 : 1}`}
-                    placeholder="Enter Address"
+                    // rows={`${window.innerWidth < 1100 ? 3 : 3}`}
+                    placeholder="Enter address"
                     className={styles.textArea}
                   />
                   <ErrorMessage
                     name="address"
+                    component="div"
+                    className={styles.errorMessage}
+                  />
+                </div>
+
+                <div className={styles.input}>
+                  <label htmlFor="zipcode">Zip Code</label>
+                  <Field
+                    name="zipcode"
+                    type="text"
+                    className={styles.inputField}
+                    placeholder="Enter zip code"
+                    onInput={(e) => handleNumericInput(e, 6)}
+                  />
+                  <ErrorMessage
+                    name="zipcode"
                     component="div"
                     className={styles.errorMessage}
                   />
@@ -235,8 +337,8 @@ export default function ReceptionForm() {
                     value={
                       values.state
                         ? stateOptions.find(
-                            (option) => option.value === values.state
-                          )
+                          (option) => option.value === values.state
+                        )
                         : null
                     }
                     onChange={(selectedOption) => {
@@ -249,9 +351,8 @@ export default function ReceptionForm() {
                         selectedOption ? selectedOption.value : ""
                       );
                     }}
-                    className={styles.stateWrapper}
-                    // styles={customStyles}
-                    placeholder="Your State"
+                    styles={customSelectStyles}
+                    placeholder="Select State"
                   />
                   <ErrorMessage
                     name="state"
@@ -269,8 +370,8 @@ export default function ReceptionForm() {
                     value={
                       values.city
                         ? cityOptions.find(
-                            (option) => option.value === values.city
-                          )
+                          (option) => option.value === values.city
+                        )
                         : null
                     }
                     onChange={(selectedOption) => {
@@ -281,9 +382,9 @@ export default function ReceptionForm() {
                     }}
                     isDisabled={!selectedState} // Disable city selection if no state is selected
                     className={styles.cityWrapper}
-                    // styles={customStyles}
+                    styles={customSelectStyles}
                     placeholder={
-                      selectedState ? "Your City" : "Select a State first"
+                      selectedState ? "Select City" : "Select a State first"
                     }
                   />
                   <ErrorMessage
@@ -293,26 +394,14 @@ export default function ReceptionForm() {
                   />
                 </div>
 
-                <div className={styles.input}>
-                  <label htmlFor="zipcode">Zip Code</label>
-                  <Field
-                    name="zipcode"
-                    type="text"
-                    className={styles.inputField}
-                    placeholder="Enter your Zip Code"
-                    onInput={(e) => handleNumericInput(e)}
-                  />
-                  <ErrorMessage
-                    name="zipcode"
-                    component="div"
-                    className={styles.errorMessage}
-                  />
+                <div className={styles.buttonContainer}>
+                  <button type="submit" disabled={isSubmitting}>
+                    {isSubmitting ? "Registering..." : "Register Patient"}
+                  </button>
                 </div>
+
               </div>
             </div>
-            <button type="submit" disabled={isSubmitting}>
-              {isSubmitting ? "Registering..." : "Register Patient"}
-            </button>
           </Form>
         )}
       </Formik>
