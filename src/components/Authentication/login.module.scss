@@ -138,6 +138,13 @@
                 }
             }
 
+            .errorMessage {
+                color: #E53935;
+                font-size: 14px;
+                font-weight: 600;
+                font-family: "Inter", sans-serif;
+            }
+
             .forgotPassword {
                 text-align: right;
                 margin-bottom: 1.5rem;

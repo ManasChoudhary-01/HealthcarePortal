@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import styles from './login.module.scss';
-
 import axios from "axios";
+import { useAuth } from "../../context/AuthContext";
+import { useNavigate } from 'react-router-dom';
+
 import background from "../../assets/Login/background.png"
 import email from "../../assets/Login/email.svg"
 import pass from "../../assets/Login/password.svg"
@@ -10,19 +12,19 @@ export default function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
-    const [alloswed, setAllowed] = useState(false);
     const [error, setError] = useState('');
-    const [success, setSuccess] = useState('');
+
+    const { login } = useAuth();
+    const navigate = useNavigate();
 
     const loginData = {
         email: username,
         password: password,
     };
 
-    const handleSubmit = async () => {
+    const handleLogin = async () => {
         setLoading(true);
         setError('');
-        setSuccess('');
 
         try {
             const response = await axios.post('http://vitalize.strangled.net/api/auth/v2/staff-login', loginData, {
@@ -31,8 +33,27 @@ export default function Login() {
                 },
             });
 
-            const data = response.data;
-            setSuccess('Login successful!');
+            const role = response.data?.occupation?.occupation;
+
+            if (!role) {
+                console.error("Role is missing in API response");
+                return;
+            }
+
+            login({
+                accessToken: response.data.accessToken,
+                refreshToken: response.data.refreshToken,
+                role: role,
+            });
+
+            navigate("/reception");
+            // localStorage.setItem("role", role);
+            // localStorage.setItem("accessToken", response.data.accessToken);
+
+            alert("Signed in as " + role);
+
+            // const data = response.data;
+            // setSuccess('Login successful!');
             console.log('Login response:', data);
 
         } catch (err) {
@@ -103,28 +124,21 @@ export default function Login() {
                         </div>
                     </div>
 
+                    {error && (
+                        <div className={styles.errorMessage}>Invalid username or password.</div>
+                    )}
+
                     <div className={styles.forgotPassword}>
                         <a href="#" className={styles.link}>Forgot Password?</a>
                     </div>
 
                     <button
                         className={styles.submitButton}
-                        onClick={handleSubmit}
+                        onClick={handleLogin}
                         disabled={loading}
                     >
                         {loading ? 'Logging in...' : 'Log In'}
                     </button>
-
-                    {/* {error && (
-                        <div className={`${styles.message} ${styles.error}`}>
-                            {error}
-                        </div>
-                    )}
-                    {success && (
-                        <div className={`${styles.message} ${styles.success}`}>
-                            {success}
-                        </div>
-                    )} */}
                 </div>
             </div>
         </div>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./receptionform.module.scss";
 import Navbar from "../Header/Navbar";
 
+import { useAuth } from "../../context/AuthContext";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import Select from "react-select";
@@ -16,6 +17,8 @@ export default function ReceptionForm() {
   const [stateOptions, setStateOptions] = useState([]);
   const [selectedState, setSelectedState] = useState("");
   const [cityOptions, setCityOptions] = useState([]);
+
+  const { accessToken } = useAuth();
 
   const initialValues = {
     firstName: "",
@@ -89,6 +92,8 @@ export default function ReceptionForm() {
     setCityOptions(selectedStateCities);
   }, [selectedState]);
 
+  console.log(accessToken)
+
   const handleFormSubmit = async (values, { resetForm, setFieldValue }) => {
     setIsSubmitting(true);
     // onSubmitData(values);
@@ -99,7 +104,10 @@ export default function ReceptionForm() {
         headers: {
           "Content-Type": "application/json",
         },
+        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsIm9jY3VwYXRpb24iOnsib2NjdXBhdGlvbiI6IlJFQ0VQVElPTklTVCIsImlkIjoxLCJob3NwaXRhbElkIjoxfSwiaWF0IjoxNzUzMDI3NjYxLCJleHAiOjE3NTMxMTQwNjF9.LcBdr-d6V_2vuItQI8Pk6IzmyytfFoOmJT-JODL5NOY`,
       });
+
+      console.log(accessToken)
 
       console.log("user registered successfully:", response.data);
       alert("User registered successfully!");
