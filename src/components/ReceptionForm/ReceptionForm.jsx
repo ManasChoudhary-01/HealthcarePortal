@@ -95,7 +95,7 @@ export default function ReceptionForm() {
     // console.log(values)
 
     try {
-      const response = await axios.post("https://vitalize.strangled.net/api/users/register-admin", values, {
+      const response = await axios.post("https://vitalize.strangled.net/api/auth/v2/complete-profile", values, {
         headers: {
           "Content-Type": "application/json",
         },

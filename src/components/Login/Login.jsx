@@ -14,32 +14,26 @@ export default function Login() {
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
 
+    const loginData = {
+        email: username,
+        password: password,
+    };
+
     const handleSubmit = async () => {
         setLoading(true);
         setError('');
         setSuccess('');
 
         try {
-            const response = await axios.post('https://vitalize.strangled.net/api/auth/v2/staff-login', {
+            const response = await axios.post('https://vitalize.strangled.net/api/auth/v2/staff-login', loginData, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                data: {
-                    username,
-                    password
-                }
             });
 
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-
-            const data = await response.json();
+            const data = response.data;
             setSuccess('Login successful!');
             console.log('Login response:', data);
-
-            // You can handle successful login here
-            // For example: redirect, store token, etc.
 
         } catch (err) {
             setError(err.message || 'Login failed. Please try again.');
