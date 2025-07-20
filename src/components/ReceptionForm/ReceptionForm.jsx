@@ -100,7 +100,7 @@ export default function ReceptionForm() {
     // console.log(values)
 
     try {
-      const response = await axios.post("http://vitalize.strangled.net/api/auth/v2/register", values, {
+      const response = await axios.post("https://vitalize.strangled.net/api/auth/v2/register", values, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${accessToken}`,
