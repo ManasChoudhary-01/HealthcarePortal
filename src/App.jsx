@@ -24,6 +24,8 @@ function App() {
         {/* <Route path="/prescription" element={<Prescription />} />
         <Route path="/prescriptionsubmitted" element={<Submitted />} /> */}
         {/* <Route path="/register" element={<Registration />} /> */}
+
+        <Route path="/reception" element={<ReceptionForm />} />
         
         <Route
           path="/reception"

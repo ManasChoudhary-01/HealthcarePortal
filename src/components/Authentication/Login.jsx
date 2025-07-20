@@ -54,7 +54,7 @@ export default function Login() {
 
             // const data = response.data;
             // setSuccess('Login successful!');
-            console.log('Login response:', data);
+            // console.log('Login response:', data);
 
         } catch (err) {
             setError(err.message || 'Login failed. Please try again.');
