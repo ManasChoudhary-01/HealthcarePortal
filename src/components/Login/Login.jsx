@@ -25,7 +25,7 @@ export default function Login() {
         setSuccess('');
 
         try {
-            const response = await axios.post('https://vitalize.strangled.net/api/auth/v2/staff-login', loginData, {
+            const response = await axios.post('http://vitalize.strangled.net/api/auth/v2/staff-login', loginData, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
