@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './login.module.scss';
 import axios from "axios";
 import { useAuth } from "../../context/AuthContext";
@@ -12,6 +12,7 @@ export default function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
+    const [enabled, setEnabled] = useState(false);
     const [error, setError] = useState('');
 
     const { login } = useAuth();
@@ -21,6 +22,13 @@ export default function Login() {
         email: username,
         password: password,
     };
+
+    useEffect(() => {
+        if (username && password) {
+            setEnabled(true)
+            return;
+        }
+    }, [username, password]);
 
     const handleLogin = async () => {
         setLoading(true);
@@ -134,8 +142,9 @@ export default function Login() {
 
                     <button
                         className={styles.submitButton}
+                        id={enabled ? "" : styles.disabled}
                         onClick={handleLogin}
-                        disabled={loading}
+                        disabled={!enabled}
                     >
                         {loading ? 'Logging in...' : 'Log In'}
                     </button>
