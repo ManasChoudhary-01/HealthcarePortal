@@ -31,7 +31,7 @@ export default function ReceptionForm() {
     city: "",
     state: "",
     zipcode: "",
-    aadhar: "",
+    aadharNumber: "",
     uhid: "",
   };
 
@@ -48,16 +48,16 @@ export default function ReceptionForm() {
       .max(new Date(), "Date of Birth cannot be in the future"),
     email: Yup.string()
       .email("Please enter a valid email"),
-    // address: Yup.string().required("Address is required"),
-    // state: Yup.string().required("State is required"),
-    // city: Yup.string().required("City is required"),
+    address: Yup.string().required("Address is required"),
+    state: Yup.string().required("State is required"),
+    city: Yup.string().required("City is required"),
     zipcode: Yup.string()
       .matches(/^\d{6}$/, "Zip Code must be exactly 6 digits"),
-    aadhar: Yup.string()
+    aadharNumber: Yup.string()
       .matches(/^\d{12}$/, "Aadhar number must be exactly 12 digits")
       .required("Aadhar number is required"),
     uhid: Yup.string()
-      .matches(/^\d{12}$/, "UHID must be exactly 12 digits")
+      .matches(/^\d{16}$/, "UHID must be exactly 16 digits")
       .required("UHID is required"),
   });
 
@@ -92,7 +92,7 @@ export default function ReceptionForm() {
     setCityOptions(selectedStateCities);
   }, [selectedState]);
 
-  console.log(accessToken)
+  // console.log(accessToken)
 
   const handleFormSubmit = async (values, { resetForm, setFieldValue }) => {
     setIsSubmitting(true);
@@ -103,13 +103,11 @@ export default function ReceptionForm() {
       const response = await axios.post("http://vitalize.strangled.net/api/auth/v2/register", values, {
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
         },
-        Authorization: `Bearer ${accessToken}`,
       });
 
-      console.log(accessToken)
-
-      console.log("user registered successfully:", response.data);
+      // console.log("user registered successfully:", response.data);
       alert("User registered successfully!");
       resetForm();
       setSelectedState("");
@@ -270,16 +268,16 @@ export default function ReceptionForm() {
                 </div>
 
                 <div className={styles.input}>
-                  <label htmlFor="aadhar">Aadhaar Number</label>
+                  <label htmlFor="aadharNumber">Aadhaar Number</label>
                   <Field
-                    name="aadhar"
+                    name="aadharNumber"
                     type="text"
                     className={styles.inputField}
                     placeholder="Enter aadhaar number"
                     onInput={(e) => handleNumericInput(e, 12)}
                   />
                   <ErrorMessage
-                    name="aadhar"
+                    name="aadharNumber"
                     component="div"
                     className={styles.errorMessage}
                   />
@@ -295,7 +293,7 @@ export default function ReceptionForm() {
                     type="text"
                     className={styles.inputField}
                     placeholder="Enter UHID"
-                    onInput={(e) => handleNumericInput(e, 12)}
+                    onInput={(e) => handleNumericInput(e, 16)}
                   />
                   <ErrorMessage
                     name="uhid"
