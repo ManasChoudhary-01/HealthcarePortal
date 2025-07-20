@@ -100,11 +100,11 @@ export default function ReceptionForm() {
     // console.log(values)
 
     try {
-      const response = await axios.post("http://vitalize.strangled.net/api/auth/v2/complete-profile", values, {
+      const response = await axios.post("http://vitalize.strangled.net/api/auth/v2/register", values, {
         headers: {
           "Content-Type": "application/json",
         },
-        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsIm9jY3VwYXRpb24iOnsib2NjdXBhdGlvbiI6IlJFQ0VQVElPTklTVCIsImlkIjoxLCJob3NwaXRhbElkIjoxfSwiaWF0IjoxNzUzMDI3NjYxLCJleHAiOjE3NTMxMTQwNjF9.LcBdr-d6V_2vuItQI8Pk6IzmyytfFoOmJT-JODL5NOY`,
+        Authorization: `Bearer ${accessToken}`,
       });
 
       console.log(accessToken)
