@@ -125,7 +125,7 @@ export default function Login() {
                     </div>
 
                     {error && (
-                        <div className={styles.errorMessage}>Invalid username or password.</div>
+                        <div className={styles.errorMessage}>{error}</div>
                     )}
 
                     <div className={styles.forgotPassword}>

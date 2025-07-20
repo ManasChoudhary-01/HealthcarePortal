@@ -48,9 +48,9 @@ export default function ReceptionForm() {
       .max(new Date(), "Date of Birth cannot be in the future"),
     email: Yup.string()
       .email("Please enter a valid email"),
-    address: Yup.string().required("Address is required"),
-    state: Yup.string().required("State is required"),
-    city: Yup.string().required("City is required"),
+    // address: Yup.string().required("Address is required"),
+    // state: Yup.string().required("State is required"),
+    // city: Yup.string().required("City is required"),
     zipcode: Yup.string()
       .matches(/^\d{6}$/, "Zip Code must be exactly 6 digits"),
     aadharNumber: Yup.string()
