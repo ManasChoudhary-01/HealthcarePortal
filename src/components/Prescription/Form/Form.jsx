@@ -113,7 +113,57 @@ export default function PrescriptionForm({ onSubmitData }) {
             <Navbar />
 
             <div className={styles.patientDetails}>
-                <h2>Patient Details</h2>
+                <div className={styles.header}>
+                    <h2>Prescription for Madhur Jain</h2>
+                    <div className={styles.right}>
+                        <p><svg width="14" height="16" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17 8V5C17 3.89543 16.1046 3 15 3H3C1.89543 3 1 3.89543 1 5V8M17 8V17C17 18.1046 16.1046 19 15 19H3C1.89543 19 1 18.1046 1 17V8M17 8H1M5 1V5M13 1V5" stroke="#2383E2" stroke-width="1.5" stroke-linecap="square" />
+                        </svg>July, 2025</p>
+                        <p><svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="9" stroke="#2383E2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M12 6.5V12L16 14" stroke="#2383E2" stroke-width="1.5" stroke-linecap="square" />
+                        </svg>04:00 PM</p>
+                    </div>
+                </div>
+                <h3>Patient Details</h3>
+                <div className={styles.details}>
+                    <div className={styles.detail}>
+                        <span className={styles.label}>Name</span>
+                        <span className={styles.value}>Manas</span>
+                    </div>
+                    <div className={styles.detail}>
+                        <span className={styles.label}>Sex</span>
+                        <span className={styles.value}>Male</span>
+                    </div>
+                    <div className={styles.detail}>
+                        <span className={styles.label}>Email Address</span>
+                        <span className={styles.value}>manasck@gmail.com</span>
+                    </div>
+                    <div className={styles.detail}>
+                        <span className={styles.label}>Phone Number</span>
+                        <span className={styles.value}>9928057474</span>
+                    </div>
+                    <div className={styles.detail}>
+                        <span className={styles.label}>Aadhar Number</span>
+                        <span className={styles.value}>1234-5678-9012</span>
+                    </div>
+                    <div className={styles.detail}>
+                        <span className={styles.label}>UHID</span>
+                        <span className={styles.value}>XYZH123456789101</span>
+                    </div>
+                    <div className={styles.detail}>
+                        <span className={styles.label}>Address</span>
+                        <span className={styles.value}>Manas</span>
+                    </div>
+                    <div className={styles.detail}>
+                        <span className={styles.label}>Age</span>
+                        <span className={styles.value}>20</span>
+                    </div>
+                    <div className={styles.detail}>
+                        <span className={styles.label}>Weight</span>
+                        <span className={styles.value}>60 kg</span>
+                    </div>
+                </div>
             </div>
 
             <Formik
@@ -335,7 +385,7 @@ export default function PrescriptionForm({ onSubmitData }) {
                             </div>
                         </div>
                         <div className={styles.buttonContainer}>
-                            <button type="submit" disabled={isSubmitting} style={{cursor: isSubmitting ? 'not-allowed' : 'pointer', backgroundColor: isSubmitting ? '#153679' : ''}}>
+                            <button type="submit" disabled={isSubmitting} style={{ cursor: isSubmitting ? 'not-allowed' : 'pointer', backgroundColor: isSubmitting ? '#153679' : '' }}>
                                 View Prescription
                             </button>
                         </div>
