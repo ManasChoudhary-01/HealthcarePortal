@@ -335,7 +335,7 @@ export default function PrescriptionForm({ onSubmitData }) {
                             </div>
                         </div>
                         <div className={styles.buttonContainer}>
-                            <button type="submit" disabled={isSubmitting}>
+                            <button type="submit" disabled={isSubmitting} style={{cursor: isSubmitting ? 'not-allowed' : 'pointer', backgroundColor: isSubmitting ? '#153679' : ''}}>
                                 View Prescription
                             </button>
                         </div>
