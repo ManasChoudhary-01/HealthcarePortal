@@ -6,7 +6,8 @@ import RoleProtectedRoute from "./utils/roleProtectedRoutes";
 import Login from "./components/Authentication/Login";
 import Unauthorized from "./pages/Unauthorized/Unauthorized";
 import Dashboard from "./pages/Dashboard/Dashboard";
-import Prescription from "./pages/Prescription/Prescription";
+import PrescriptionForm from "./components/Prescription/Form/Form";
+// import Prescription from "./pages/Prescription/Prescription";
 import ReceptionForm from "./components/ReceptionForm/ReceptionForm";
 import Submitted from "./pages/Submitted/Submitted";
 import Registration from "./pages/Registration/Registration";
@@ -21,8 +22,8 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/unauthorized" element={<Unauthorized />} />
 
-        {/* <Route path="/prescription" element={<Prescription />} />
-        <Route path="/prescriptionsubmitted" element={<Submitted />} /> */}
+        <Route path="/prescription" element={<PrescriptionForm />} />
+        {/* <Route path="/prescriptionsubmitted" element={<Submitted />} /> */}
         {/* <Route path="/register" element={<Registration />} /> */}
         
         <Route
