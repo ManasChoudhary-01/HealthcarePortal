@@ -54,9 +54,9 @@ export default function Login() {
                 role: role,
             });
 
-            navigate("/reception");
-            // localStorage.setItem("role", role);
-            // localStorage.setItem("accessToken", response.data.accessToken);
+            navigate("/dashboard");
+            localStorage.setItem("role", role);
+            localStorage.setItem("accessToken", response.data.accessToken);
 
             alert("Signed in as " + role);
 

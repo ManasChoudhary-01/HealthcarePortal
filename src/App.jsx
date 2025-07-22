@@ -25,9 +25,10 @@ function App() {
         <Route path="/prescription" element={<PrescriptionForm />} />
         {/* <Route path="/prescriptionsubmitted" element={<Submitted />} /> */}
         {/* <Route path="/register" element={<Registration />} /> */}
-        
+        <Route path="/dashboard" element={<Dashboard />} />
+
         <Route
-          path="/reception"
+          path="/reception_register"
           element={
             <RoleProtectedRoute allowedRoles={['RECEPTIONIST', 'ADMIN']}>
               <ReceptionForm />
