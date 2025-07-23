@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./form.module.scss";
 import Navbar from "../../Header/Navbar";
 import { useParams } from "react-router-dom";
+import { useAuth } from "../../../context/AuthContext";
 
 import { Formik, Field, Form, ErrorMessage, FieldArray } from "formik";
 import * as Yup from "yup";
@@ -15,6 +16,7 @@ export default function PrescriptionForm({ onSubmitData }) {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const { patientId } = useParams();
     const [patientData, setPatientData] = useState(null);
+    const { accessToken } = useAuth();
 
     const initialValues = {
         complaint: [],
@@ -86,13 +88,12 @@ export default function PrescriptionForm({ onSubmitData }) {
 
     useEffect(() => {
     const fetchPatientDetails = async () => {
-       const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsIm9jY3VwYXRpb24iOnsib2NjdXBhdGlvbiI6IkRPQ1RPUiIsImlkIjoxLCJob3NwaXRhbHMiOlsxXX0sImlhdCI6MTc1MzIxOTMxMCwiZXhwIjoxNzUzMzA1NzEwfQ.XN-HLMtlVgUUHlwiUvzIU_x7KZgp4AEgjV4uGc9p5GI";
 
       try {
         const response = await axios.get(`https://vitalize.strangled.net/api/patient/${patientId}`, {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${accessToken}`,
           },
         });
 

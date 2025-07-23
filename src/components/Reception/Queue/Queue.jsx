@@ -2,21 +2,23 @@ import React, { useState, useEffect } from "react";
 import styles from "./queue.module.scss";
 import Navbar from "../../Header/Navbar";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../../context/AuthContext";
 
 export default function Queue() {
 
     const [facts, setFacts] = useState([]);
     const [totalPatients, setTotalPatients] = useState(0);
+    const { accessToken } = useAuth();
 
     useEffect(() => {
-        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsIm9jY3VwYXRpb24iOnsib2NjdXBhdGlvbiI6IkRPQ1RPUiIsImlkIjoxLCJob3NwaXRhbHMiOlsxXX0sImlhdCI6MTc1MzIxOTMxMCwiZXhwIjoxNzUzMzA1NzEwfQ.XN-HLMtlVgUUHlwiUvzIU_x7KZgp4AEgjV4uGc9p5GI";
+        
         const hospitalId = localStorage.getItem("hospitalId") || 1;
         const doctorId = 1;
 
         const fetchData = async () => {
             const response = await fetch(`https://vitalize.strangled.net/api/appointment/queue/${doctorId}/${hospitalId}`, {
                 headers: {
-                    Authorization: `Bearer ${token}`,
+                    Authorization: `Bearer ${accessToken}`,
                     Accept: "text/event-stream",
                 },
             });
