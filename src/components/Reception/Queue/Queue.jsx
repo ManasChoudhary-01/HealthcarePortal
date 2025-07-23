@@ -85,7 +85,7 @@ export default function Queue() {
                                 <h4>UHID:</h4>
                                 <span className={styles.uhid}>{item.patient.profile.firstName + " " + item.patient.profile.lastName}</span>
                             </div>
-                            <Link to={`/prescription/${item.patientId}`}>
+                            <Link to={`/prescription/${item.patientId}`} target="_main">
                                 <div className={styles.right}>Prescribe</div>
                             </Link>
                         </div>
