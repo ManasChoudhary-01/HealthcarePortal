@@ -24,7 +24,7 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/unauthorized" element={<Unauthorized />} />
 
-        <Route path="/prescription" element={<PrescriptionForm />} />
+        <Route path="/prescription/:patientId" element={<PrescriptionForm />} />
         {/* <Route path="/prescriptionsubmitted" element={<Submitted />} /> */}
         {/* <Route path="/register" element={<Registration />} /> */}
         <Route path="/dashboard" element={<Dashboard />} />

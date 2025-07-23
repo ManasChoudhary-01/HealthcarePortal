@@ -6,14 +6,27 @@
     align-items: center;
     margin-bottom: 3rem;
 
-    h2 {
-        font-family: "Public Sans", sans-serif;
-        font-weight: 700;
-        font-style: Bold;
-        font-size: 30px;
-        text-align: center;
+    .header {
+        width: 1000px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
         margin-top: 2.5rem;
-        color: #121417;
+
+        h3 {
+            font-family: "Public Sans", sans-serif;
+            font-weight: 700;
+            font-style: Bold;
+            font-size: 24px;
+            color: #121417;
+        }
+
+        .totalPatients {
+            font-family: "Inter", sans-serif;
+            font-weight: 500;
+            font-size: 20px;
+            color: #2383E2;
+        }
     }
 
     .wrapper {
@@ -68,12 +81,14 @@
                 }
 
                 .right {
-                    font-family: "Inter,sans-serif";
-                    font-weight: 500;
+                    font-family: "Inter", sans-serif;
+                    font-weight: 600;
                     font-size: 20px;
-                    text-decoration: underline;
+                    padding: 10px 16px;
+                    border: 1.5px solid #2383E2;
                     cursor: pointer;
                     color: #2383E2;
+                    border-radius: 12px;
                 }
             }
         }
