@@ -8,7 +8,7 @@ import Unauthorized from "./pages/Unauthorized/Unauthorized";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import PrescriptionForm from "./components/Prescription/Form/Form";
 // import Prescription from "./pages/Prescription/Prescription";
-import ReceptionForm from "./components/ReceptionForm/ReceptionForm";
+import ReceptionRegister from "./components/Reception/Register/ReceptionForm";
 import Submitted from "./pages/Submitted/Submitted";
 import Registration from "./pages/Registration/Registration";
 
@@ -31,7 +31,7 @@ function App() {
           path="/reception_register"
           element={
             <RoleProtectedRoute allowedRoles={['RECEPTIONIST', 'ADMIN']}>
-              <ReceptionForm />
+              <ReceptionRegister />
             </RoleProtectedRoute>} />
 
       </Routes>

@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
 import styles from "./receptionform.module.scss";
-import Navbar from "../Header/Navbar";
+import Navbar from "../../Header/Navbar";
 
-import { useAuth } from "../../context/AuthContext";
+import { useAuth } from "../../../context/AuthContext";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import Select from "react-select";
 import axios from "axios";
 
-import statesData from "../../utils/states.json";
-import citiesData from "../../utils/states.json";
-import Image from "../../assets/Form/image.png";
+import statesData from "../../../utils/states.json";
+import citiesData from "../../../utils/states.json";
+import Image from "../../../assets/Form/image.png";
 
 export default function ReceptionForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
