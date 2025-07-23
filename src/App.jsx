@@ -11,6 +11,7 @@ import PrescriptionForm from "./components/Prescription/Form/Form";
 import ReceptionRegister from "./components/Reception/Register/ReceptionForm";
 import Submitted from "./pages/Submitted/Submitted";
 import Registration from "./pages/Registration/Registration";
+import Appointment from "./components/Reception/Appointment/Appointment";
 
 
 function App() {
@@ -26,6 +27,8 @@ function App() {
         {/* <Route path="/prescriptionsubmitted" element={<Submitted />} /> */}
         {/* <Route path="/register" element={<Registration />} /> */}
         <Route path="/dashboard" element={<Dashboard />} />
+
+        <Route path="/appointment" element={<Appointment />} />
 
         <Route
           path="/reception_register"

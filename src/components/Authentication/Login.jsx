@@ -42,6 +42,7 @@ export default function Login() {
             });
 
             const role = response.data?.occupation?.occupation;
+            const hospitalId = response.data?.occupation?.hospitals?.[0];
 
             if (!role) {
                 console.error("Role is missing in API response");
@@ -56,7 +57,7 @@ export default function Login() {
 
             navigate("/dashboard");
             localStorage.setItem("role", role);
-            localStorage.setItem("accessToken", response.data.accessToken);
+            localStorage.setItem("hospitalId", hospitalId);
 
             alert("Signed in as " + role);
 

@@ -1,0 +1,78 @@
+@use '../../Styles/form.scss';
+
+.appointmentContainer {
+    height: fit-content;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 3rem;
+
+    h2 {
+        font-family: "Public Sans", sans-serif;
+        font-weight: 700;
+        font-style: Bold;
+        font-size: 30px;
+        text-align: center;
+        margin-top: 2.5rem;
+        color: #121417;
+    }
+
+    .appointmentForm {
+        height: fit-content;
+        width: 500px;
+        display: flex;
+        flex-direction: column;
+        margin-top: 3rem;
+
+        .input {
+            @extend %commonInput;
+            gap: 0;
+            margin-bottom: 40px;
+
+            label {
+                font-family: "Inter", sans-serif;
+                font-weight: 500;
+                font-size: 20px;
+                color: #000000;
+            }
+
+            .inputField {
+                width: 100%;
+                height: 50px;
+                border-radius: 0;
+                border-bottom: 1px solid #000000;
+            }
+
+            .inputField::placeholder {
+                font-size: 20px;
+            }
+        }
+
+        .dateTime {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            width: 100%;
+
+            #dateInput {
+                width: calc(50% - 10px);
+            }
+
+            #timeInput {
+                width: calc(50% - 10px);
+            }
+        }
+
+        .buttonContainer {
+            margin-top: 20px;
+            width: 100%;
+            height: auto;
+
+            button {
+                @extend %commonFormBtn;
+                width: 100%;
+            }
+        }
+    }
+}
