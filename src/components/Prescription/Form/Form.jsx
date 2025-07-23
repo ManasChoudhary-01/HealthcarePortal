@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./form.module.scss";
 import Navbar from "../../Header/Navbar";
+import { useParams } from "react-router-dom";
 
 import { Formik, Field, Form, ErrorMessage, FieldArray } from "formik";
 import * as Yup from "yup";
@@ -12,6 +13,8 @@ import cross from "../../../assets/Form/cross.svg";
 export default function PrescriptionForm({ onSubmitData }) {
 
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const { patientId } = useParams();
+    const [patientData, setPatientData] = useState(null);
 
     const initialValues = {
         complaint: [],
@@ -81,6 +84,28 @@ export default function PrescriptionForm({ onSubmitData }) {
         ],
     };
 
+    useEffect(() => {
+    const fetchPatientDetails = async () => {
+       const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsIm9jY3VwYXRpb24iOnsib2NjdXBhdGlvbiI6IkRPQ1RPUiIsImlkIjoxLCJob3NwaXRhbHMiOlsxXX0sImlhdCI6MTc1MzIxOTMxMCwiZXhwIjoxNzUzMzA1NzEwfQ.XN-HLMtlVgUUHlwiUvzIU_x7KZgp4AEgjV4uGc9p5GI";
+
+      try {
+        const response = await axios.get(`https://vitalize.strangled.net/api/patient/${patientId}`, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        setPatientData(response.data);
+        console.log("Patient details fetched successfully:", response.data);
+      } catch (error) {
+        console.error("Error fetching patient details:", error);
+      }
+    };
+
+    if (patientId) fetchPatientDetails();
+  }, [patientId]);
+
     const handleFormSubmit = async (values, { resetForm }) => {
         setIsSubmitting(true);
         // onSubmitData(values);
@@ -114,7 +139,7 @@ export default function PrescriptionForm({ onSubmitData }) {
 
             <div className={styles.patientDetails}>
                 <div className={styles.header}>
-                    <h2>Prescription for Madhur Jain</h2>
+                    <h2>Prescription for {patientData?.profile?.firstName || "Manas"}</h2>
                     <div className={styles.right}>
                         <p><svg width="14" height="16" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M17 8V5C17 3.89543 16.1046 3 15 3H3C1.89543 3 1 3.89543 1 5V8M17 8V17C17 18.1046 16.1046 19 15 19H3C1.89543 19 1 18.1046 1 17V8M17 8H1M5 1V5M13 1V5" stroke="#2383E2" stroke-width="1.5" stroke-linecap="square" />
@@ -129,31 +154,31 @@ export default function PrescriptionForm({ onSubmitData }) {
                 <div className={styles.details}>
                     <div className={styles.detail}>
                         <span className={styles.label}>Name</span>
-                        <span className={styles.value}>Manas</span>
+                        <span className={styles.value}>{patientData?.profile?.firstName} {patientData?.profile?.lastName || "Manas"}</span>
                     </div>
                     <div className={styles.detail}>
                         <span className={styles.label}>Sex</span>
-                        <span className={styles.value}>Male</span>
+                        <span className={styles.value}>{patientData?.profile?.gender || "Male"}</span>
                     </div>
                     <div className={styles.detail}>
                         <span className={styles.label}>Email Address</span>
-                        <span className={styles.value}>manasck@gmail.com</span>
+                        <span className={styles.value}>{patientData?.profile?.user?.email || "manas@gmail.com"}</span>
                     </div>
                     <div className={styles.detail}>
                         <span className={styles.label}>Phone Number</span>
-                        <span className={styles.value}>9928057474</span>
+                        <span className={styles.value}>{patientData?.profile?.user?.phoneNumber || "9928057474"}</span>
                     </div>
                     <div className={styles.detail}>
                         <span className={styles.label}>Aadhar Number</span>
-                        <span className={styles.value}>1234-5678-9012</span>
+                        <span className={styles.value}>{patientData?.aadharNumber || "1234-5678-9012"}</span>
                     </div>
                     <div className={styles.detail}>
                         <span className={styles.label}>UHID</span>
-                        <span className={styles.value}>XYZH123456789101</span>
+                        <span className={styles.value}>{patientData?.uhid || "XYZH123456789101"}</span>
                     </div>
                     <div className={styles.detail}>
                         <span className={styles.label}>Address</span>
-                        <span className={styles.value}>Manas</span>
+                        <span className={styles.value}>{patientData?.profile?.address || "Jodhpur"}</span>
                     </div>
                     <div className={styles.detail}>
                         <span className={styles.label}>Age</span>

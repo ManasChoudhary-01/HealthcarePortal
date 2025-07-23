@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import styles from "./queue.module.scss";
 import Navbar from "../../Header/Navbar";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Queue() {
 
     const [facts, setFacts] = useState([]);
-    const [listening, setListening] = useState(false);
     const [totalPatients, setTotalPatients] = useState(0);
 
     useEffect(() => {
