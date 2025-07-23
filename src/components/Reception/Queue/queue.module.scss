@@ -1,0 +1,81 @@
+.queueContainer {
+    height: fit-content;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 3rem;
+
+    h2 {
+        font-family: "Public Sans", sans-serif;
+        font-weight: 700;
+        font-style: Bold;
+        font-size: 30px;
+        text-align: center;
+        margin-top: 2.5rem;
+        color: #121417;
+    }
+
+    .wrapper {
+        margin-top: 3rem;
+        height: fit-content;
+        width: 1000px;
+        display: flex;
+        flex-direction: column;
+
+        @media(max-width: 1050px) {
+            margin-left: 3%;
+            margin-right: 3%;
+            width: 94%;
+        }
+
+        .list {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            align-items: center;
+            height: 50vh;
+            overflow-y: scroll;
+
+            .queueItem {
+                height: 84px;
+                width: 96%;
+                border-width: 0.5px, 0px, 0.5px, 0px;
+                border-style: solid;
+                border-color: #EDEDEC;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                padding: 16px 24px;
+                align-items: center;
+
+                .left {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 3px;
+
+                    h4 {
+                        font-weight: 650;
+                        font-size: 18px;
+
+                    }
+
+                    span {
+                        font-weight: 500;
+                        font-size: 18px;
+                        color: #32302C;
+                    }
+                }
+
+                .right {
+                    font-family: "Inter,sans-serif";
+                    font-weight: 500;
+                    font-size: 20px;
+                    text-decoration: underline;
+                    cursor: pointer;
+                    color: #2383E2;
+                }
+            }
+        }
+    }
+}

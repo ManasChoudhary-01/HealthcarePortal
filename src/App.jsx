@@ -12,6 +12,7 @@ import ReceptionRegister from "./components/Reception/Register/ReceptionForm";
 import Submitted from "./pages/Submitted/Submitted";
 import Registration from "./pages/Registration/Registration";
 import Appointment from "./components/Reception/Appointment/Appointment";
+import Queue from "./components/Reception/Queue/Queue";
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
 
         <Route path="/appointment" element={<Appointment />} />
+        <Route path="/queue" element={<Queue />} />
 
         <Route
           path="/reception_register"
