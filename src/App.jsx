@@ -13,7 +13,7 @@ import Submitted from "./pages/Submitted/Submitted";
 import Registration from "./pages/Registration/Registration";
 import Appointment from "./components/Reception/Appointment/Appointment";
 import Queue from "./components/Reception/Queue/Queue";
-
+import PrescriptionTemplate from "./components/Prescription/Template/Template";
 
 function App() {
 
@@ -33,9 +33,9 @@ function App() {
       {/* <Route path="/prescriptionsubmitted" element={<Submitted />} /> */}
       {/* <Route path="/register" element={<Registration />} /> */}
       <Route path="/dashboard" element={<Dashboard />} />
-
       <Route path="/appointment" element={<Appointment />} />
       <Route path="/queue" element={<Queue />} />
+      <Route path="/prescription_template" element={<PrescriptionTemplate />} />
 
       <Route
         path="/reception_register"
