@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./appointment.module.scss";
 import Navbar from "../../Header/Navbar";
 
-import  useAuthStore from "../../../context/AuthContext";
+import  useAuthStore from "../../../context/useAuthStore";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import Select from "react-select";
@@ -13,7 +13,6 @@ export default function Appointment() {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [selectedDeptName, setSelectedDeptName] = useState("");
     const { accessToken } = useAuthStore();
-    console.log("Access Token:", accessToken);
 
     const departmentOptions = [
         { id: 1, name: "Cardiology" },

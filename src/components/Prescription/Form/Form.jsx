@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./form.module.scss";
 import Navbar from "../../Header/Navbar";
 import { useParams } from "react-router-dom";
-import useAuthStore from "../../../context/AuthContext";
+import useAuthStore from "../../../context/useAuthStore";
 
 import { Formik, Field, Form, ErrorMessage, FieldArray } from "formik";
 import * as Yup from "yup";

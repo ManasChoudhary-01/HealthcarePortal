@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./receptionform.module.scss";
 import Navbar from "../../Header/Navbar";
 
-import useAuthStore from "../../../context/AuthContext";
+import useAuthStore from "../../../context/useAuthStore";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import Select from "react-select";

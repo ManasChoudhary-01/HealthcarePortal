@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './login.module.scss';
 import axios from "axios";
-import useAuthStore from "../../context/AuthContext";
+import useAuthStore from "../../context/useAuthStore";
 import { useNavigate } from 'react-router-dom';
 
 import background from "../../assets/Login/background.png"
@@ -53,11 +53,12 @@ export default function Login() {
                 accessToken: response.data.accessToken,
                 refreshToken: response.data.refreshToken,
                 role: role,
+                hospitalId: hospitalId,
             });
 
             navigate("/dashboard");
-            localStorage.setItem("role", role);
-            localStorage.setItem("hospitalId", hospitalId);
+            // localStorage.setItem("role", role);
+            // localStorage.setItem("hospitalId", hospitalId);
 
             alert("Signed in as " + role);
 

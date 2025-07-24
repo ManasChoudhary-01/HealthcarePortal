@@ -1,7 +1,7 @@
-import { useAuth } from "../context/AuthContext";
+import useAuthStore from "../context/useAuthStore";
 
 const RoleWrapper = ({ allowedRoles, children }) => {
-  const { role } = useAuth();
+  const { role } = useAuthStore();
 
   if (allowedRoles.includes(role)) {
     return children;

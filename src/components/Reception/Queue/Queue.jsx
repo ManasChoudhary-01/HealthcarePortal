@@ -2,17 +2,18 @@ import React, { useState, useEffect } from "react";
 import styles from "./queue.module.scss";
 import Navbar from "../../Header/Navbar";
 import { Link } from "react-router-dom";
-import useAuthStore from "../../../context/AuthContext";
+import useAuthStore from "../../../context/useAuthStore";
 
 export default function Queue() {
 
     const [facts, setFacts] = useState([]);
     const [totalPatients, setTotalPatients] = useState(0);
-    const { accessToken } = useAuthStore();
 
     useEffect(() => {
-        
-        const hospitalId = localStorage.getItem("hospitalId") || 1;
+
+        const { accessToken } = useAuthStore();
+        const { hospitalId } = useAuthStore();
+        // const hospitalId = localStorage.getItem("hospitalId") || 1;
         const doctorId = 1;
 
         const fetchData = async () => {

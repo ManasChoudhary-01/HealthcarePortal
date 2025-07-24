@@ -1,15 +1,5 @@
-// import axios from "axios";
-
-// const instance = axios.create({
-//   baseURL: "http://localhost:5000/api", // change to your backend URL
-//   withCredentials: true, // needed for cookies (optional)
-// });
-
-// export default instance;
-
-// setupAxiosInterceptors.js
 import axios from 'axios';
-import useAuthStore from '../context/AuthContext';
+import useAuthStore from '../context/useAuthStore';
 
 const setupAxiosInterceptors = () => {
   const { accessToken, refreshToken, login, logout } = useAuthStore.getState();
