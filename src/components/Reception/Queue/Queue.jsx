@@ -12,7 +12,7 @@ export default function Queue() {
     useEffect(() => {
 
         const { accessToken } = useAuthStore();
-        const { hospitalId } = useAuthStore();
+        const hospitalId = useAuthStore();
         // const hospitalId = localStorage.getItem("hospitalId") || 1;
         const doctorId = 1;
         console.log(hospitalId)
