@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import styles from "./queue.module.scss";
 import Navbar from "../../Header/Navbar";
 import { Link } from "react-router-dom";
-import { useAuth } from "../../../context/AuthContext";
+import useAuthStore from "../../../context/AuthContext";
 
 export default function Queue() {
 
     const [facts, setFacts] = useState([]);
     const [totalPatients, setTotalPatients] = useState(0);
-    const { accessToken } = useAuth();
+    const { accessToken } = useAuthStore();
 
     useEffect(() => {
         

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './login.module.scss';
 import axios from "axios";
-import { useAuth } from "../../context/AuthContext";
+import useAuthStore from "../../context/AuthContext";
 import { useNavigate } from 'react-router-dom';
 
 import background from "../../assets/Login/background.png"
@@ -15,7 +15,7 @@ export default function Login() {
     const [enabled, setEnabled] = useState(false);
     const [error, setError] = useState('');
 
-    const { login } = useAuth();
+    const { login } = useAuthStore();
     const navigate = useNavigate();
 
     const loginData = {

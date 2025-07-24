@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./form.module.scss";
 import Navbar from "../../Header/Navbar";
 import { useParams } from "react-router-dom";
-import { useAuth } from "../../../context/AuthContext";
+import useAuthStore from "../../../context/AuthContext";
 
 import { Formik, Field, Form, ErrorMessage, FieldArray } from "formik";
 import * as Yup from "yup";
@@ -16,7 +16,7 @@ export default function PrescriptionForm({ onSubmitData }) {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const { patientId } = useParams();
     const [patientData, setPatientData] = useState(null);
-    const { accessToken } = useAuth();
+    const { accessToken } = useAuthStore();
 
     const initialValues = {
         complaint: [],

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./receptionform.module.scss";
 import Navbar from "../../Header/Navbar";
 
-import { useAuth } from "../../../context/AuthContext";
+import useAuthStore from "../../../context/AuthContext";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import Select from "react-select";
@@ -18,7 +18,7 @@ export default function ReceptionForm() {
   const [selectedState, setSelectedState] = useState("");
   const [cityOptions, setCityOptions] = useState([]);
 
-  const { accessToken } = useAuth();
+  const { accessToken } = useAuthStore();
 
   const initialValues = {
     firstName: "",
