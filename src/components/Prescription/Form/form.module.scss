@@ -75,7 +75,7 @@
                     font-size: 16px;
                     font-weight: 600;
                     font-family: "Inter", sans-serif;
-                    text-transform: capitalize;
+                    // text-transform: capitalize;
                 }
             }
         }
@@ -200,5 +200,11 @@
             border: none;
             cursor: pointer;
         }
+    }
+
+    .genPrescription {
+        margin-top: 3rem;
+        border: 2px solid #EDEDED;
+        margin-bottom: 1rem;
     }
 }

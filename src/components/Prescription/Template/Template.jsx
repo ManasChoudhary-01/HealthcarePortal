@@ -96,7 +96,7 @@ export default function PrescriptionTemplate() {
                 </div>
 
             </div>
-            <button onClick={downloadPdf} data-html2canvas-ignores="true">Download pdf</button>
+            <button className={styles.downloadPdf} onClick={downloadPdf} data-html2canvas-ignores="true">Submit Prescription</button>
         </>
     )
 }
