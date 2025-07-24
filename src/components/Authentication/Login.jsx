@@ -42,6 +42,7 @@ export default function Login() {
             });
 
             const role = response.data?.occupation?.occupation;
+            const roleId = response.data?.occupation?.id;
             const hospitalId = response.data?.occupation?.hospitals?.[0];
 
             if (!role) {

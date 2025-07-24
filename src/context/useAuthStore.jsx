@@ -7,17 +7,19 @@ const useAuthStore = create(
       accessToken: null,
       refreshToken: null,
       role: null,
+      roleId: null,
+      hospitalId: null,
 
-      login: ({ accessToken, refreshToken, role }) => {
-        set({ accessToken, refreshToken, role });
+      login: ({ accessToken, refreshToken, role, roleId, hospitalId }) => {
+        set({ accessToken, refreshToken, role, roleId, hospitalId });
       },
 
       logout: () => {
-        set({ accessToken: null, refreshToken: null, role: null });
+        set({ accessToken: null, refreshToken: null, role: null, roleId: null, hospitalId: null });
       }
     }),
     {
-      name: "auth-storage", // unique name for the storage
+      name: "auth-storage",
     }
 
   )
