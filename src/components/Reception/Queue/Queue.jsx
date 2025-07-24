@@ -15,6 +15,7 @@ export default function Queue() {
         const { hospitalId } = useAuthStore();
         // const hospitalId = localStorage.getItem("hospitalId") || 1;
         const doctorId = 1;
+        console.log(hospitalId)
 
         const fetchData = async () => {
             const response = await fetch(`https://vitalize.strangled.net/api/appointment/queue/${doctorId}/${hospitalId}`, {
