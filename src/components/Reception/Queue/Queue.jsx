@@ -9,12 +9,9 @@ export default function Queue() {
     const [facts, setFacts] = useState([]);
     const [totalPatients, setTotalPatients] = useState(0);
     const { accessToken, hospitalId } = useAuthStore();
-    console.log(hospitalId);
 
     useEffect(() => {
 
-        // const hospitalId = 1;
-        // const hospitalId = localStorage.getItem("hospitalId") || 1;
         const doctorId = 1;
 
         const fetchData = async () => {
