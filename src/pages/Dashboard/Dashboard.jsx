@@ -4,8 +4,11 @@ import { Link } from "react-router-dom";
 
 import RoleWrapper from "../../helper/RoleWrapper";
 import Navbar from "../../components/Header/Navbar";
+import useAuthStore from "../../context/useAuthStore";
 
 export default function Dashboard() {
+    const { roleId, hospitalId } = useAuthStore();
+    console.log(roleId, hospitalId);
 
     return (
         <div className={styles.dashboardContainer}>
