@@ -8,14 +8,14 @@ export default function Queue() {
 
     const [facts, setFacts] = useState([]);
     const [totalPatients, setTotalPatients] = useState(0);
+    const { accessToken, hospitalId } = useAuthStore();
+    console.log(hospitalId);
 
     useEffect(() => {
 
-        const { accessToken } = useAuthStore();
-        const hospitalId = 1;
+        // const hospitalId = 1;
         // const hospitalId = localStorage.getItem("hospitalId") || 1;
         const doctorId = 1;
-        // console.log(hospitalId)
 
         const fetchData = async () => {
             const response = await fetch(`https://vitalize.strangled.net/api/appointment/queue/${doctorId}/${hospitalId}`, {
