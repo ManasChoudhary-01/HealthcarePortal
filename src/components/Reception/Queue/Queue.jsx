@@ -3,7 +3,7 @@ import styles from "./queue.module.scss";
 import Navbar from "../../Header/Navbar";
 import { Link } from "react-router-dom";
 import useAuthStore from "../../../context/useAuthStore";
-import search from "../../../assets/Form/search.svg";
+import searchIcon from "../../../assets/Form/search.svg";
 
 export default function Queue() {
 
@@ -81,7 +81,7 @@ export default function Queue() {
             <div className={styles.wrapper}>
                 <div className={styles.searchContainer}>
                     <span className={styles.searchIcon}>
-                        <img src={search} alt="search" />
+                        <img src={searchIcon} alt="search" />
                     </span>
                     <input onChange={(e) => setSearch(e.target.value)} className={styles.searchInput} type="text" placeholder="Search by UHID" />
                 </div>
