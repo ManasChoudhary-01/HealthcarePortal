@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, use } from "react";
 import styles from "./appointment.module.scss";
 import Navbar from "../../Header/Navbar";
 
@@ -12,7 +12,8 @@ export default function Appointment() {
 
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [selectedDeptName, setSelectedDeptName] = useState("");
-    const { accessToken } = useAuthStore();
+    // const [departmentOptions, setDepartmentOptions] = useState([]);
+    const { accessToken, hospitalId } = useAuthStore();
 
     const departmentOptions = [
         { id: 1, name: "Cardiology" },
@@ -21,6 +22,24 @@ export default function Appointment() {
         { id: 4, name: "Pediatrics" },
         { id: 5, name: "Gynecology" },
     ];
+
+    // useEffect(() => {
+
+    //     const fetchDepartments = async () => {
+    //         try {
+    //             const response = await axios.get(`https://vitalize.strangled.net/api/department/hospital/${hospitalId}`, {
+    //                 headers: {
+    //                     Authorization: `Bearer ${accessToken}`,
+    //                 },
+    //             });
+    //             setDepartmentOptions(response.data);
+    //         } catch (error) {
+    //             console.error("Error fetching departments:", error);
+    //         }
+    //     };
+
+    //     fetchDepartments();
+    // }, [accessToken, hospitalId]);
 
     const doctorsByDepartment = {
         Cardiology: [
