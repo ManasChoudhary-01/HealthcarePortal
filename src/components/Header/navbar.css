@@ -30,6 +30,7 @@
             font-weight: 500;
             font-size: 16px;
             transition: all 0.3s ease;
+            cursor: pointer;
         }
 
         .active {

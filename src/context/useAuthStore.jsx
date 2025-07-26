@@ -15,7 +15,17 @@ const useAuthStore = create(
       },
 
       logout: () => {
-        set({ accessToken: null, refreshToken: null, role: null, roleId: null, hospitalId: null });
+        set({
+          accessToken: null,
+          refreshToken: null,
+          role: null,
+          roleId: null,
+          hospitalId: null
+        });
+
+        try {
+          window.localStorage.removeItem("auth-storage");
+        } catch (_) { }
       }
     }),
     {
