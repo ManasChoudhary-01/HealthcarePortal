@@ -3,11 +3,13 @@ import styles from "./queue.module.scss";
 import Navbar from "../../Header/Navbar";
 import { Link } from "react-router-dom";
 import useAuthStore from "../../../context/useAuthStore";
+import search from "../../../assets/Form/search.svg";
 
 export default function Queue() {
 
     const [facts, setFacts] = useState([]);
     const [totalPatients, setTotalPatients] = useState(0);
+    const [search, setSearch] = useState("");
     const { accessToken, hospitalId, roleId } = useAuthStore();
 
     useEffect(() => {
@@ -65,8 +67,9 @@ export default function Queue() {
         fetchData();
     }, []);
 
-    console.log(facts);
+    // console.log(facts);
     // console.log(totalPatients);
+    // console.log(search);
 
     return (
         <div className={styles.queueContainer}>
@@ -76,11 +79,18 @@ export default function Queue() {
                 <span className={styles.totalPatients}>{totalPatients} patients</span>
             </div>
             <div className={styles.wrapper}>
-                {/* <div className={styles.searchContainer}>
-                    <input type="text" placeholder="Search by UHID" className={styles.searchInput} />
-                </div> */}
+                <div className={styles.searchContainer}>
+                    <span className={styles.searchIcon}>
+                        <img src={search} alt="search" />
+                    </span>
+                    <input onChange={(e) => setSearch(e.target.value)} className={styles.searchInput} type="text" placeholder="Search by UHID" />
+                </div>
                 <div className={styles.list}>
-                    {facts.map(item => (
+                    {facts.filter((item) => {
+                        return search.toLowerCase() === ""
+                            ? item
+                            : item.patient.profile.firstName.toLowerCase().includes(search) || item.patient.profile.lastName.toLowerCase().includes(search);
+                    }).map(item => (
                         <div className={styles.queueItem}>
                             <div className={styles.left}>
                                 <h4>UHID:</h4>

@@ -116,3 +116,27 @@
         width: 80vw;
     }
 }
+
+%commonInputField {
+    height: 56px;
+    background-color: #FFFFFF;
+    font-size: 17px;
+    padding: 16px;
+    border: none;
+    border-radius: 12px;
+    color: #32302C;
+    transition: all 0.3s ease-in-out;
+
+    &::placeholder {
+        background: #FFFFFF;
+        color: #32302C;
+        opacity: 1;
+        font-size: 17px;
+        font-weight: 400;
+
+    }
+
+    &:focus {
+        outline: none;
+    }
+}

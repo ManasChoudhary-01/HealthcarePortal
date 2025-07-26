@@ -1,3 +1,5 @@
+@use "../../Styles/form.scss";
+
 .queueContainer {
     height: fit-content;
     width: 100%;
@@ -40,6 +42,27 @@
             margin-left: 3%;
             margin-right: 3%;
             width: 94%;
+        }
+
+        .searchContainer {
+            width: 100%;
+            margin-bottom: 2rem;
+            position: relative;
+
+            .searchIcon {
+                position: absolute;
+                top: 50%;
+                left: 16px;
+                transform: translateY(-50%);
+                z-index: 1;
+            }
+
+            .searchInput {
+                @extend %commonInputField;
+                border: 2px solid #EDEDEC;
+                width: 100%;
+                padding-left: 60px;
+            }
         }
 
         .list {
