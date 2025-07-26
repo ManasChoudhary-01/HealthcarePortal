@@ -115,9 +115,10 @@ export default function PrescriptionForm({ onSubmitData }) {
         // onSubmitData(values);
 
         try {
-            const response = await axios.post("https://httpbin.org/post", values, {
+            const response = await axios.post("https://vitalize.strangled.net/api/prescription/upload-prescription", values, {
                 headers: {
                     "Content-Type": "application/json",
+                    Authorization: `Bearer ${accessToken}`,
                 },
             });
 
