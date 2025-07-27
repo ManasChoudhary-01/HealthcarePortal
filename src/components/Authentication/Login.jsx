@@ -76,6 +76,17 @@ export default function Login() {
         }
     };
 
+    useEffect(() => {
+        const onKeyDown = (e) => {
+            if ((e.key === 'Enter' || e.code === 'NumpadEnter') && enabled && !loading) {
+                e.preventDefault();
+                handleLogin();
+            }
+        };
+        window.addEventListener('keydown', onKeyDown);
+        return () => window.removeEventListener('keydown', onKeyDown);
+    }, [enabled, loading, handleLogin]);
+
     return (
         <div className={styles.container}>
             <div className={styles.background}>
