@@ -8,26 +8,26 @@ import useAuthStore from "../../context/useAuthStore";
 
 export default function Dashboard() {
 
-    const role = useAuthStore((state) => state.role);
-    const [heading, setHeading] = useState("");
+    // const role = useAuthStore((state) => state.role);
+    // const [heading, setHeading] = useState("");
 
-    if (role === "RECEPTIONIST") {
-        setHeading("Receptionist Dashboard");
-    } else if (role === "DOCTOR") {
-        setHeading("Doctor Dashboard");
-    } else if (role === "PHARMACIST") {
-        setHeading("Pharmacist Dashboard");
-    } else if (role === "LAB_TECHNICIAN") {
-        setHeading("Lab Technician Dashboard");
-    } else {
-        setHeading("Dashboard");
-    }
+    // if (role === "RECEPTIONIST") {
+    //     setHeading("Receptionist Dashboard");
+    // } else if (role === "DOCTOR") {
+    //     setHeading("Doctor Dashboard");
+    // } else if (role === "PHARMACIST") {
+    //     setHeading("Pharmacist Dashboard");
+    // } else if (role === "LAB_TECHNICIAN") {
+    //     setHeading("Lab Technician Dashboard");
+    // } else {
+    //     setHeading("Dashboard");
+    // }
 
     return (
         <div className={styles.dashboardContainer}>
             <Navbar />
 
-            <h2>{heading}</h2>
+            <h2>Receptionist Dashboard</h2>
             <div className={styles.wrapper}>
 
                 <RoleWrapper allowedRoles={["RECEPTIONIST"]}>
