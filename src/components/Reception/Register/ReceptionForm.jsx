@@ -146,6 +146,16 @@ export default function ReceptionForm() {
       backgroundColor: '#fff',
       padding: '16px',
     }),
+    indicatorsContainer: (provided) => ({
+        ...provided,
+        "& svg": {
+            fill: "#32302C", // Change arrow color
+        },
+    }),
+    indicatorSeparator: (provided) => ({
+        ...provided,
+        width: "0",
+    }),
   };
 
   return (
