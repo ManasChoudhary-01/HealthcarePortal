@@ -6,7 +6,7 @@ import logo from "../../../assets/Prescription/logo.svg";
 import watermark from "../../../assets/Prescription/watermark.svg";
 import rx from "../../../assets/Prescription/rx.svg";
 
-export default function PrescriptionTemplate() {
+export default function PrescriptionTemplate({data}) {
 
     function downloadPdf() {
         const element = document.getElementById("pdf");
@@ -57,7 +57,7 @@ export default function PrescriptionTemplate() {
                     <div className={styles.patientInfo}>
                         <div className={styles.item} id={styles.name}>
                             <span className={styles.label}>Patient Name:</span>
-                            <span className={styles.value}>Narendra Modi</span>
+                            <span className={styles.value}>{data?.patient?.profile?.firstName} {data?.patient?.profile?.lastName}</span>
                         </div>
 
                         <div className={styles.item} id={styles.date}>
@@ -72,7 +72,7 @@ export default function PrescriptionTemplate() {
 
                         <div className={styles.item} id={styles.gender}>
                             <span className={styles.label}>Gender:</span>
-                            <span className={styles.value}>Male</span>
+                            <span className={styles.value}>{data?.patient?.profile?.gender}</span>
                         </div>
 
                         <div className={styles.item} id={styles.weight}>
@@ -82,7 +82,7 @@ export default function PrescriptionTemplate() {
 
                         <div className={styles.item} id={styles.diagnosis}>
                             <span className={styles.label}>Diagnosis:</span>
-                            <span className={styles.value}>Hypertension</span>
+                            <span className={styles.value}>{data?.prescription?.diagnosis.join(", ")}</span>
                         </div>
                     </div>
                     <div className={styles.rxContainer}>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./form.module.scss";
 import Navbar from "../../Header/Navbar";
-import { useParams } from "react-router-dom";
+import { data, useParams } from "react-router-dom";
 import useAuthStore from "../../../context/useAuthStore";
 import PrescriptionTemplate from "../Template/Template";
 import { useNavigate } from "react-router-dom";
@@ -19,6 +19,7 @@ export default function PrescriptionForm({ onSubmitData }) {
     const { patientId } = useParams();
     const [patientData, setPatientData] = useState(null);
     const [generatePDF, setGeneratePDF] = useState(false);
+    const [combinedData, setCombinedData] = useState(null);
     const { accessToken } = useAuthStore();
 
     const initialValues = {
@@ -114,6 +115,11 @@ export default function PrescriptionForm({ onSubmitData }) {
         setIsSubmitting(true);
         // onSubmitData(values);
 
+        setCombinedData({
+            patient: patientData,
+            prescription: values,
+        });
+
         try {
             const response = await axios.post("https://vitalize.strangled.net/api/prescription/upload-prescription", values, {
                 headers: {
@@ -134,12 +140,17 @@ export default function PrescriptionForm({ onSubmitData }) {
             // }
         } catch (error) {
             console.error("Error submitting prescription:", error);
+            setGeneratePDF(true);
         } finally {
             setIsSubmitting(false);
         }
     };
 
-    // console.log(generatePDF);
+    useEffect(() => {
+        if (combinedData) {
+            console.log(combinedData)
+        }
+    }, [combinedData])
 
     return (
         <div className={styles.prescriptionContainer}>
@@ -431,7 +442,7 @@ export default function PrescriptionForm({ onSubmitData }) {
             }
             {generatePDF &&
                 <div className={styles.genPrescription}>
-                    <PrescriptionTemplate />
+                    <PrescriptionTemplate data={combinedData} />
                 </div>
             }
         </div>
