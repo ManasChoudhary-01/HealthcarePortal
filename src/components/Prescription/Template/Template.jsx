@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./template.module.scss";
 import html2pdf from "html2pdf.js";
 
@@ -6,9 +6,15 @@ import logo from "../../../assets/Prescription/logo.svg";
 import watermark from "../../../assets/Prescription/watermark.svg";
 import rx from "../../../assets/Prescription/rx.svg";
 
-export default function PrescriptionTemplate({data}) {
+export default function PrescriptionTemplate({ data }) {
+
+    const [submitButton, setSubmitButton] = useState("Submit Prescription");
+    const [enabled, setEnabled] = useState(true);
 
     function downloadPdf() {
+        setSubmitButton("Uploading...");
+        setEnabled(false);
+
         const element = document.getElementById("pdf");
         const opt = {
             // margin: [10, 10, 10, 10],               // mm if jsPDF.unit === 'mm'
@@ -33,10 +39,36 @@ export default function PrescriptionTemplate({data}) {
         };
 
 
-        html2pdf().set(opt).from(element).save();
-        // html2pdf()
-        //     .from(element)
-        //     .save("prescription.pdf");
+        html2pdf()
+            .set(opt)
+            .from(element)
+            // .save();
+            .outputPdf('blob')
+            .then(pdfBlob => {
+                fetch("https://httpbin.org/post", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/pdf',
+                        'Content-Disposition': 'attachment; filename="prescription.pdf"'
+                    },
+                    body: pdfBlob
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        // console.log('PDF uploaded successfully:', data);
+                        setSubmitButton("Submitted Successfully");
+                        setEnabled(false);
+                        alert('PDF uploaded successfully');
+                        const blobUrl = URL.createObjectURL(pdfBlob);
+                        window.open(blobUrl, '_blank');
+                    })
+                    .catch(error => {
+                        console.error('Error uploading PDF:', error);
+                        alert('Failed to upload PDF');
+                        setEnabled(true);
+                        setSubmitButton("Submit Prescription");
+                    });
+            });
 
     }
 
@@ -91,12 +123,19 @@ export default function PrescriptionTemplate({data}) {
                         </div>
                         <div className={styles.rxHeader}>
                             <img src={rx} alt="Rx" />
-                        </div>    
+                        </div>
                     </div>
                 </div>
 
             </div>
-            <button className={styles.downloadPdf} onClick={downloadPdf} data-html2canvas-ignores="true">Submit Prescription</button>
+            <button
+                className={styles.downloadPdf}
+                onClick={downloadPdf}
+                data-html2canvas-ignores="true"
+                disabled={!enabled}
+                id={enabled ? "" : styles.disabled}
+            >{submitButton}
+            </button>
         </>
     )
 }

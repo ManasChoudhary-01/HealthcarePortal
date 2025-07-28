@@ -204,6 +204,11 @@
     border-top: 2px solid #EDEDED;
 }
 
+#disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
 @layer base {
     img {
         display: inline;
